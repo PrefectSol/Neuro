@@ -10,14 +10,10 @@ Multimodule neural network.
 
 ## Build and Run
 
-```
+```bash
 git clone git@github.com:PrefectSol/Neuro.git
-
 cd Neuro/
-
 cmake .
-
 make
-
 ./Neuro
 ```
