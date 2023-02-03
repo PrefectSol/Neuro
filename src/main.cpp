@@ -15,14 +15,14 @@ void printUsage(std::string helpWord)
 void printHelp()
 {
     std::cout << "--------------------------------------" << std::endl;
-    std::cout << "VERSION: 0.1\tNAME: Neuro" << std::endl;
+    std::cout << "VERSION: 0.0.2\tNAME: Neuro" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
     std::cout << "Modules:" << std::endl <<
         " - GCD: 0" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
 }
 
-int main(int argc, char **argv) 
+int main(int argc, const char **argv) 
 {
     const std::string helpWord = "-help";
 

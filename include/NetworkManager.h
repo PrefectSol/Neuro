@@ -12,7 +12,7 @@ enum Module
 class NetworkManager
 {
 public:
-    static uint32_t runModule(int module, int argc, char **argv);
+    static uint32_t runModule(int module, int argc, const char **argv);
 
 protected:
 
