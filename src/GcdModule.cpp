@@ -23,32 +23,15 @@ uint32_t runGcdModule(int argc, const char **argv)
         return isInitData;
     }
     
-    // ######################
-    // TEST MATRIX oper
-    // std::cout << "mat1: "<< std::endl;
-    // Matrix mat1(2, 2);
-    // std::cout << "mat2: "<< std::endl;
-    // Matrix mat2(2, 2);
-    // std::cout << "result: "<< std::endl;
-    // Matrix matR(5, 1); // TEST MATRIX OPERATIONS
-    // Matrix::sum(mat1, mat2, matR);
-    // Matrix::multiply(mat1, mat2, matR);
+    // ######################### DEBUG
+    // Add to CLI
+    std::vector<int> networkStruct = {2, 3, 2, 3, 1};
+    double nums[] = {0, 0, 0, 0, 0};
+    Vector networkOffset(nums, networkStruct.size());
+    int learningRate = 0.3f;
+    // ######################### !DEBUG
 
-    // ##################################
-    // TODO: Add to CLI
-
-    const float learningRate = 0.3f;
-    std::vector<int> networkStruct = {2, 3, 2, 3, 1}; 
-    try 
-    {
-        Matrix networkOffset(0, 0, 0);
-
-        Network network(networkStruct, &networkOffset, learningRate);
-    }
-    catch(...)
-    {
-        return ErrorCode::cannotCreateTheMatrix;
-    }
+    Network network(networkStruct, networkOffset, learningRate);
     
     return ErrorCode::success;
 }

@@ -6,12 +6,12 @@
 
 #include "AuditLog.h"
 #include "Algorithm.h"
-#include "Matrix.h"
+#include "Math.h"
 
 class Network 
 {
 public:    
-    Network(const std::vector<int> &networkStruct, Matrix *networkOffset, int learningRate);
+    Network(const std::vector<int> &networkStruct, Vector &networkOffset, int learningRate);
     
     ~Network();
 
@@ -26,14 +26,13 @@ private:
 
     typedef struct networkModel 
     {
-        Matrix **neuronLayers;
+        Vector **neuronLayers;
         int neuronLayersCount;
 
         Matrix **weightsLayers;
         int weightsLayersCount;
 
-        Matrix **offsetLayers;
-        int offsetLayersCount;
+        Vector *offsetLayers;
     } networkModel;
 
     networkModel network;

@@ -153,6 +153,30 @@ src/Algorithm.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/Algorithm.cpp.s
 .PHONY : src/Algorithm.cpp.s
 
+src/BasicOperations.o: src/BasicOperations.cpp.o
+.PHONY : src/BasicOperations.o
+
+# target to build an object file
+src/BasicOperations.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/BasicOperations.cpp.o
+.PHONY : src/BasicOperations.cpp.o
+
+src/BasicOperations.i: src/BasicOperations.cpp.i
+.PHONY : src/BasicOperations.i
+
+# target to preprocess a source file
+src/BasicOperations.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/BasicOperations.cpp.i
+.PHONY : src/BasicOperations.cpp.i
+
+src/BasicOperations.s: src/BasicOperations.cpp.s
+.PHONY : src/BasicOperations.s
+
+# target to generate assembly for a file
+src/BasicOperations.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/BasicOperations.cpp.s
+.PHONY : src/BasicOperations.cpp.s
+
 src/GcdModule.o: src/GcdModule.cpp.o
 .PHONY : src/GcdModule.o
 
@@ -249,6 +273,30 @@ src/NetworkManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/NetworkManager.cpp.s
 .PHONY : src/NetworkManager.cpp.s
 
+src/Vector.o: src/Vector.cpp.o
+.PHONY : src/Vector.o
+
+# target to build an object file
+src/Vector.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/Vector.cpp.o
+.PHONY : src/Vector.cpp.o
+
+src/Vector.i: src/Vector.cpp.i
+.PHONY : src/Vector.i
+
+# target to preprocess a source file
+src/Vector.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/Vector.cpp.i
+.PHONY : src/Vector.cpp.i
+
+src/Vector.s: src/Vector.cpp.s
+.PHONY : src/Vector.s
+
+# target to generate assembly for a file
+src/Vector.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/Vector.cpp.s
+.PHONY : src/Vector.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -285,6 +333,9 @@ help:
 	@echo "... src/Algorithm.o"
 	@echo "... src/Algorithm.i"
 	@echo "... src/Algorithm.s"
+	@echo "... src/BasicOperations.o"
+	@echo "... src/BasicOperations.i"
+	@echo "... src/BasicOperations.s"
 	@echo "... src/GcdModule.o"
 	@echo "... src/GcdModule.i"
 	@echo "... src/GcdModule.s"
@@ -297,6 +348,9 @@ help:
 	@echo "... src/NetworkManager.o"
 	@echo "... src/NetworkManager.i"
 	@echo "... src/NetworkManager.s"
+	@echo "... src/Vector.o"
+	@echo "... src/Vector.i"
+	@echo "... src/Vector.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -7,12 +7,17 @@ enum ErrorCode
 
     unavailableModule = 2,
 
+    invalidArguments,
     notEnoughArguments,
     cannotConvertStrToInt,
     cannotOpenFile,
 
-    cannotCreateTheMatrix,
-    indexOutsideTheMatrix,
+    cannotCreateMatrix,
+    indexOutsideMatrix,
+    invalidMatrix,
+
+    incorrectVectorSize,
+    indexOutsideVector,
     
     invalidNetworkOffset,
 };

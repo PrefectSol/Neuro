@@ -8,14 +8,14 @@
 
 void printUsage(std::string helpWord)
 {
-    std::cout << "Neuro - some neural network" << std::endl;
+    std::cout << "Neuro - CLI for training and implementation of new modules in neural networks." << std::endl;
     std::cout << "Example: <run the some module of neuro> <module args> / " << helpWord << std::endl;
 }
 
 void printHelp()
 {
     std::cout << "--------------------------------------" << std::endl;
-    std::cout << "VERSION: 0.0.3\tNAME: Neuro" << std::endl;
+    std::cout << "VERSION: 0.0.4\tNAME: Neuro" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
     std::cout << "Modules:" << std::endl <<
         " - GCD: 0" << std::endl;

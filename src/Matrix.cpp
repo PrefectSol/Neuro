@@ -1,17 +1,11 @@
-#include "Matrix.h"
+#include "Math.h"
 
 Matrix::Matrix(int rows, int cols, bool isRandomValues)
-    : rows(rows), cols(cols), size(rows * cols)
+    : rows(rows), cols(cols)
 {
     if (rows < 0 || cols < 0)
     {
-        throw std::runtime_error("Cannot create the matrix.");
-    }
-
-    if (!isRandomValues || size == 0)
-    {
-        isZero = true;
-        return;
+        throw std::runtime_error("Cannot create matrix.");
     }
 
     matrix = new double*[rows];
@@ -25,9 +19,7 @@ Matrix::Matrix(int rows, int cols, bool isRandomValues)
         for(int j = 0; j < cols; j++)
         {
             matrix[i][j] = isRandomValues ? getRandomDouble() : 0;
-            std::cout << matrix[i][j] << "\t";
         }
-        std::cout << std::endl;
     }
 }
 
@@ -41,11 +33,6 @@ Matrix::~Matrix()
     delete[] matrix;
 }
 
-int Matrix::getSize()
-{
-    return size;
-}
-
 int Matrix::getRows()
 {
     return rows;
@@ -56,34 +43,14 @@ int Matrix::getCols()
     return cols;
 }
 
-bool Matrix::isZeroMatrix()
-{
-    return isZero;
-}
-
-int Matrix::getValue(int i, int j)
-{
-    return matrix[i][j];
-}
-
-uint32_t Matrix::setValue(int i, int j, int value)
+uint32_t Matrix::getElement(int i, int j, double *element)
 {
     if ((i >= rows || i < 0) || (j >= cols || j < 0))
     {
-        return ErrorCode::indexOutsideTheMatrix;
+        return ErrorCode::indexOutsideMatrix;
     }
 
-    matrix[i][j] = value;
+    *element = matrix[i][j];
 
-    return ErrorCode::success;
-}
-
-uint32_t Matrix::multiply(const Matrix &mat1, const Matrix &mat2, Matrix result)
-{
-    return ErrorCode::success;
-}
-
-uint32_t Matrix::sum(const Matrix &mat1, const Matrix &mat2, Matrix result)
-{
     return ErrorCode::success;
 }

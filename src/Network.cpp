@@ -1,39 +1,23 @@
 #include "Network.h"
 
-Network::Network(const std::vector<int> &networkStruct, Matrix *networkOffset, int learningRate)
+Network::Network(const std::vector<int> &networkStruct, Vector &networkOffset, int learningRate)
     : learningRate(learningRate) 
 {
-    if (networkOffset->getCols() != 1)
+    network.neuronLayersCount = networkStruct.size();
+    network.neuronLayers = new Vector*[network.neuronLayersCount];
+    for(int i = 0; i < network.neuronLayersCount; i++)
     {
-        throw std::runtime_error("Invalid network offset.");
+        network.neuronLayers[i] = new Vector(networkStruct[i]);
     }
 
-    try
+    network.weightsLayersCount = networkStruct.size() - 1;
+    network.weightsLayers = new Matrix*[network.weightsLayersCount];
+    for(int i = 0; i < network.weightsLayersCount; i++)
     {
-        network.neuronLayersCount = networkStruct.size();
-        network.neuronLayers = new Matrix*[network.neuronLayersCount];
-        for(int i = 0; i < network.neuronLayersCount; i++)
-        {
-            network.neuronLayers[i] = new Matrix(networkStruct[i], 1, false);
-        }
-
-        network.weightsLayersCount = networkStruct.size() - 1;
-        network.weightsLayers = new Matrix*[network.weightsLayersCount];
-        for(int i = 0; i < network.weightsLayersCount; i++)
-        {
-            network.weightsLayers[i] = new Matrix(networkStruct[i + 1], networkStruct[i]);
-        }
-    }
-    catch(...)
-    {
-        throw std::runtime_error("Cannot create the matrix.");
+        network.weightsLayers[i] = new Matrix(networkStruct[i + 1], networkStruct[i]);
     }
 
-    if (!networkOffset->isZeroMatrix())
-    {
-        network.offsetLayersCount = networkOffset->getSize();
-        network.offsetLayers = &networkOffset;
-    }
+    network.offsetLayers = &networkOffset;
 }
 
 Network::~Network()
@@ -53,10 +37,10 @@ Network::~Network()
 
 void Network::runTrainNetwork(std::vector<std::pair<int, int>> &inputData, std::vector<int> &outputData)
 {
-
+    // ...
 }
 
 void Network::propagateForward(const std::pair<int, int> &input)
 {
-    
+    // ...
 }
