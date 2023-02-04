@@ -1,6 +1,6 @@
 # Neuro: preparatory project
 
-Multimodule neural network.
+CLI for training and implementation of new modules in neural networks.
 
 
 ## Modules
