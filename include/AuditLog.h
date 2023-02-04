@@ -9,7 +9,12 @@ enum ErrorCode
 
     notEnoughArguments,
     cannotConvertStrToInt,
-    cannotOpenFile
+    cannotOpenFile,
+
+    cannotCreateTheMatrix,
+    indexOutsideTheMatrix,
+    
+    invalidNetworkOffset,
 };
 
 #endif // !AUDITLOG_H

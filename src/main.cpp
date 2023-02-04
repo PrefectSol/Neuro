@@ -15,7 +15,7 @@ void printUsage(std::string helpWord)
 void printHelp()
 {
     std::cout << "--------------------------------------" << std::endl;
-    std::cout << "VERSION: 0.0.2\tNAME: Neuro" << std::endl;
+    std::cout << "VERSION: 0.0.3\tNAME: Neuro" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
     std::cout << "Modules:" << std::endl <<
         " - GCD: 0" << std::endl;

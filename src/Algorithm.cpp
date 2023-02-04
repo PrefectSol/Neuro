@@ -1,5 +1,40 @@
 #include "Algorithm.h"
 
+double ActivationFunctions::linear(double x, int k)
+{
+    return k * x;
+}
+
+double ActivationFunctions::semiLinear(double x, int k)
+{
+    return x > 0 ? k * x : 0;
+}
+
+double ActivationFunctions::sigmoid(double x)
+{
+    return 1 / (1 + pow(M_E, -x));
+}
+
+double ActivationFunctions::hyperbolicTangent(double x)
+{
+    return 1 / (pow(M_E, x) + pow(M_E, -x));
+}
+
+double ActivationFunctions::exponential(double x)
+{
+    return pow(M_E, -x);
+}
+
+double ActivationFunctions::quadratic(double x)
+{
+    return pow(x, 2);
+}
+
+double ActivationFunctions::sign(double x)
+{
+    return x > 0 ? 1 : -1;
+}
+
 bool isPathExists(std::string filename)
 {
     std::filesystem::path directory = filename;
@@ -22,6 +57,11 @@ bool str2int(std::string str, int *num)
     }
 
     return 1;
+}
+
+double getRandomDouble()
+{
+    return (double)(RAND_MAX) / (double)(rand());
 }
 
 int getGcd(int a, int b)
