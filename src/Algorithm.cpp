@@ -1,13 +1,13 @@
 #include "Algorithm.h"
 
-double ActivationFunctions::linear(double x, int k)
+double ActivationFunctions::linear(double x)
 {
-    return k * x;
+    return 2 * x;
 }
 
-double ActivationFunctions::semiLinear(double x, int k)
+double ActivationFunctions::semiLinear(double x)
 {
-    return x > 0 ? k * x : 0;
+    return x > 0 ? 2 * x : 0;
 }
 
 double ActivationFunctions::sigmoid(double x)

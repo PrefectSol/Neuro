@@ -58,3 +58,8 @@ uint32_t Vector::getElement(int i, double *element)
 
     return ErrorCode::success;
 }
+
+double* Vector::getAllElements()
+{
+    return vector;
+}

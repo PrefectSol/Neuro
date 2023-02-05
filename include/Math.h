@@ -40,6 +40,8 @@ public:
     uint32_t setSizedData(double *nums, int size);
 
     uint32_t getElement(int i, double *element);
+
+    double* getAllElements();
     
 protected:
 
@@ -56,6 +58,8 @@ namespace BasicOperations
     uint32_t multiplyMatrix2Vector(Matrix &matrix, Vector &vector, Vector *result);
 
     uint32_t sumVector2Vector(Vector &vector1, Vector &vector2, Vector *result);
+
+    uint32_t activateNeuronLayer(double (*function)(double x), Vector &layer, Vector *result);
 };
 
 #endif // !MATH_H

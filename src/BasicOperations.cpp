@@ -51,3 +51,23 @@ uint32_t BasicOperations::sumVector2Vector(Vector &vector1, Vector &vector2, Vec
 
     return ErrorCode::success;
 }
+
+uint32_t BasicOperations::activateNeuronLayer(double (*function)(double x), Vector &layer, Vector *result)
+{
+    if (layer.getSize() != result->getSize())
+    {
+        return ErrorCode::incorrectVectorSize;
+    }
+
+    double nums[layer.getSize()];
+    for(int i = 0; i < layer.getSize(); i++)
+    {
+        double element;
+        layer.getElement(i, &element);
+        nums[i] = function(element);
+    }
+
+    result->setSizedData(nums, layer.getSize());
+
+    return ErrorCode::success;
+}

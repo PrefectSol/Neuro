@@ -7,6 +7,9 @@ uint32_t runGcdModule(int argc, const char **argv)
         return ErrorCode::notEnoughArguments;
     }
 
+    // ######################### 
+    // TODO: Add CLI Parser
+
     int countData;
     bool isInt = str2int(argv[2], &countData);
     if (!isInt)
@@ -14,8 +17,8 @@ uint32_t runGcdModule(int argc, const char **argv)
         return ErrorCode::cannotConvertStrToInt;
     }
 
-    std::vector<std::pair<int, int>> inputData;
-    std::vector<int> outputData;
+    std::vector<std::pair<double, double>> inputData;
+    std::vector<double> outputData;
     
     uint32_t isInitData = initData(argc, argv, countData, &inputData, &outputData);
     if (isInitData != ErrorCode::success)
@@ -32,11 +35,16 @@ uint32_t runGcdModule(int argc, const char **argv)
     // ######################### !DEBUG
 
     Network network(networkStruct, networkOffset, learningRate);
-    
+    uint32_t isRunTrain = network.runTrainNetwork(inputData, outputData);
+    if (isRunTrain != ErrorCode::success)
+    {
+        return isRunTrain;
+    }
+
     return ErrorCode::success;
 }
 
-uint32_t initData(int argc, const char **argv, int countData, std::vector<std::pair<int, int>> *inputData, std::vector<int> *outputData)
+uint32_t initData(int argc, const char **argv, int countData, std::vector<std::pair<double, double>> *inputData, std::vector<double> *outputData)
 {
     if (argc > 3 && isPathExists(argv[3]))
     {
@@ -81,7 +89,7 @@ uint32_t createGcdData(int countData, std::string filename)
     return ErrorCode::success;
 }
 
-void createGcdData(int countData, std::vector<std::pair<int, int>> *inputData, std::vector<int> *outputData)
+void createGcdData(int countData, std::vector<std::pair<double, double>> *inputData, std::vector<double> *outputData)
 {
     srand(time(NULL));
     for(int i = 0; i < countData; i++)
@@ -96,7 +104,7 @@ void createGcdData(int countData, std::vector<std::pair<int, int>> *inputData, s
     }   
 }
 
-uint32_t readGcdDataFile(std::string filename, std::vector<std::pair<int, int>> *inputData, std::vector<int> *outputData)
+uint32_t readGcdDataFile(std::string filename, std::vector<std::pair<double, double>> *inputData, std::vector<double> *outputData)
 {
     std::ifstream reader(filename);
 

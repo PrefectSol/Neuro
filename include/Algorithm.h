@@ -7,9 +7,9 @@
 
 namespace ActivationFunctions
 {
-    double linear(double x, int k = 2);
+    double linear(double x);
 
-    double semiLinear(double x, int k = 2);
+    double semiLinear(double x);
 
     double sigmoid(double x);
 

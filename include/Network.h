@@ -15,9 +15,7 @@ public:
     
     ~Network();
 
-    void runTrainNetwork(std::vector<std::pair<int, int>> &inputData, std::vector<int> &outputData);
-
-    void propagateForward(const std::pair<int, int> &input);
+    uint32_t runTrainNetwork(const std::vector<std::pair<double, double>> &inputData, const std::vector<double> &outputData);
 
 protected:
 
@@ -36,6 +34,8 @@ private:
     } networkModel;
 
     networkModel network;
+
+    uint32_t propagateForward(const std::pair<double, double> &input);
 };
 
 #endif // !NETWORK_H
