@@ -51,28 +51,82 @@ uint32_t Network::runTrainNetwork(const std::vector<std::pair<double, double>> &
 
 uint32_t Network::propagateForward(const std::pair<double, double> &input)
 {
-    double inputLayer[2] = {input.first, input.second};
+    double inputLayer[2] = { input.first, input.second };
     uint32_t isSetInput = network.neuronLayers[0]->setSizedData(inputLayer, 2);
     if (isSetInput != ErrorCode::success)
     {
         return isSetInput;
     }
 
-    double (*activationFunc)(double x);
-    activationFunc = ActivationFunctions::sigmoid;
+    double (*activationFunc)(double x) = ActivationFunctions::single;
 
-    Vector matrix2vectorResult(network.neuronLayersCount);
-    Vector vector2vectorResult(network.neuronLayersCount);
-    Vector newNeuronLayer(network.neuronLayersCount);
-
-    for(int i = 1; i < network.weightsLayersCount; i++)
+    for(int i = 1; i < network.neuronLayersCount; i++)
     {
-        BasicOperations::multiplyMatrix2Vector(*network.weightsLayers[i], *network.neuronLayers[i], &matrix2vectorResult);
-        BasicOperations::sumVector2Vector(matrix2vectorResult, network.offsetLayers[i], &vector2vectorResult);
+        const int layerSize = network.neuronLayers[i]->getSize();
+
+        double offset[layerSize];
+        double offsetValue;
+        network.offsetLayers->getElement(i - 1, &offsetValue);
+
+        initArray(offset, layerSize, offsetValue);
+
+        Vector offsetLayer(offset, layerSize);
+        Vector matrix2vectorResult(layerSize); // RENAME
+        Vector vector2vectorResult(layerSize);
+        Vector newNeuronLayer(layerSize);
+        
+        BasicOperations::multiplyMatrix2Vector(*network.weightsLayers[i - 1], *network.neuronLayers[i - 1], &matrix2vectorResult);
+        BasicOperations::sumVector2Vector(matrix2vectorResult, offsetLayer, &vector2vectorResult); // RENAME
         BasicOperations::activateNeuronLayer(activationFunc, vector2vectorResult, &newNeuronLayer);
+        
+        network.neuronLayers[i]->setSizedData(newNeuronLayer.getAllElements(), newNeuronLayer.getSize());
+        
 
-        network.neuronLayers[i]->setSizedData(newNeuronLayer.getAllElements(), network.neuronLayersCount);
+        // ##########################
+        // VIEW NEURON MODEL
+        // ##########################
+
+        // std::cout << "--------------------------------" << std::endl;
+        // std::cout << "\t\tSTART VIEW" << std::endl;
+        // std::cout << "--------------------------------" << std::endl;
+
+        // std::cout << "layers:" << std::endl;
+        // for(int k = 0; k < network.neuronLayersCount; k++)
+        // {
+        //     std::cout << "\tLayer " << k << std::endl;
+        //     double *layer = network.neuronLayers[k]->getAllElements();
+        //     for(int j = 0; j < network.neuronLayers[k]->getSize(); j++)
+        //     {
+        //         std::cout << "\t\t\t" << layer[j] << std::endl;
+        //     }
+        //     std::cout << std::endl;
+        // }
+        // std::cout << "--------------------------------" << std::endl;
+
+        // std::cout << "WEIGHTS:" << std::endl;
+        // for(int k = 0; k < network.weightsLayersCount; k++)
+        // {
+        //     std::cout << "\tLayer: " << k << std::endl;
+        //     Matrix *layer = network.weightsLayers[k];
+        //     for(int j = 0; j < layer->getRows(); j++)
+        //     {
+        //         for(int c = 0; c < layer->getCols(); c++)
+        //         {
+        //             double element;
+        //             layer->getElement(j, c, &element);
+        //             std::cout << element << "\t";
+        //         }
+        //         std::cout << std::endl;
+        //     }
+        // }
+        // std::cout << "--------------------------------" << std::endl;
+
+        // ##########################
+
     }
-
+    
+    double *nums = network.neuronLayers[network.neuronLayersCount - 1]->getAllElements();
+    std::cout << "OUTPUT: " << nums[0] << std::endl;
+    
     return ErrorCode::success;
 }

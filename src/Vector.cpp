@@ -1,4 +1,4 @@
-#include "/home/prefect/Code/C++/Neuro/include/Math.h"
+#include "Math.h"
 
 Vector::Vector(double *nums, int size)
     : isDynamicVector(false)

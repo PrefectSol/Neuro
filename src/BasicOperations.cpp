@@ -3,8 +3,8 @@
 uint32_t BasicOperations::multiplyMatrix2Vector(Matrix &matrix, Vector &vector, Vector *result)
 {
     bool isInvalidMatrix = matrix.getCols() != vector.getSize();
-    bool isInvalidVector = vector.getSize() != result->getSize();
-    if (isInvalidMatrix || isInvalidVector)
+//    bool isInvalidVector = vector.getSize() != result->getSize();
+    if (isInvalidMatrix)
     {
         return ErrorCode::invalidArguments;
     }
@@ -32,7 +32,7 @@ uint32_t BasicOperations::multiplyMatrix2Vector(Matrix &matrix, Vector &vector, 
 
 uint32_t BasicOperations::sumVector2Vector(Vector &vector1, Vector &vector2, Vector *result)
 {
-    if (vector1.getSize() != vector2.getSize() != result->getSize())
+    if (vector1.getSize() != vector2.getSize() || vector1.getSize() != result->getSize())
     {
         return ErrorCode::incorrectVectorSize;
     }
@@ -64,6 +64,7 @@ uint32_t BasicOperations::activateNeuronLayer(double (*function)(double x), Vect
     {
         double element;
         layer.getElement(i, &element);
+        
         nums[i] = function(element);
     }
 

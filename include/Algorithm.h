@@ -20,6 +20,8 @@ namespace ActivationFunctions
     double quadratic(double x);
 
     double sign(double x);
+
+    double single(double x);
 };
 
 bool isPathExists(std::string filename);
@@ -29,5 +31,7 @@ bool str2int(std::string str, int *num);
 double getRandomDouble();
 
 int getGcd(int a, int b);
+
+void initArray(double *array, int size, double value);
 
 #endif // !ALGORITHM

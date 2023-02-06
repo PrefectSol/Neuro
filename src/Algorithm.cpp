@@ -35,6 +35,11 @@ double ActivationFunctions::sign(double x)
     return x > 0 ? 1 : -1;
 }
 
+double ActivationFunctions::single(double x)
+{
+    return x;
+}
+
 bool isPathExists(std::string filename)
 {
     std::filesystem::path directory = filename;
@@ -72,4 +77,12 @@ int getGcd(int a, int b)
     }
     
     return a + b; 
+}
+
+void initArray(double *array, int size, double value)
+{
+    for(int i = 0; i < size; i++)
+    {
+        array[i] = value;
+    }
 }
