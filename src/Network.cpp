@@ -17,6 +17,13 @@ Network::Network(const std::vector<int> &networkStruct, Vector &networkOffset, i
         network.weightsLayers[i] = new Matrix(networkStruct[i + 1], networkStruct[i]);
     }
 
+    network.weightsErrorsCount = networkStruct.size() - 1;
+    network.weightsErrors = new Matrix*[network.weightsErrorsCount];
+    for(int i = 0; i < network.weightsErrorsCount; i++)
+    {
+        network.weightsErrors[i] = new Matrix(networkStruct[i + 1], networkStruct[i], false);
+    }
+
     network.offsetLayers = &networkOffset;
 }
 
@@ -33,6 +40,12 @@ Network::~Network()
         delete network.weightsLayers[i];
     }
     delete[] network.weightsLayers;
+
+    for(int i = 0; i < network.weightsErrorsCount; i++)
+    {
+        delete network.weightsErrors[i];
+    }
+    delete[] network.weightsErrors;
 }
 
 uint32_t Network::runTrainNetwork(const std::vector<std::pair<double, double>> &inputData, const std::vector<double> &outputData)
@@ -44,21 +57,27 @@ uint32_t Network::runTrainNetwork(const std::vector<std::pair<double, double>> &
         {
             return isPropagateForward;
         }
+
+       // uint32_t isCalcError = calculateError(outputData[i]);
+
     }
+
+
 
     return ErrorCode::success;
 }
 
 uint32_t Network::propagateForward(const std::pair<double, double> &input)
 {
-    double inputLayer[2] = { input.first, input.second };
+    double (*activationFunc)(double x) = ActivationFunctions::single;
+
+   double inputLayer[2] = { activationFunc(input.first), activationFunc(input.second) };
+   //double inputLayer[2] = { 2, 5 };
     uint32_t isSetInput = network.neuronLayers[0]->setSizedData(inputLayer, 2);
     if (isSetInput != ErrorCode::success)
     {
         return isSetInput;
     }
-
-    double (*activationFunc)(double x) = ActivationFunctions::single;
 
     for(int i = 1; i < network.neuronLayersCount; i++)
     {
@@ -81,7 +100,6 @@ uint32_t Network::propagateForward(const std::pair<double, double> &input)
         
         network.neuronLayers[i]->setSizedData(newNeuronLayer.getAllElements(), newNeuronLayer.getSize());
         
-
         // ##########################
         // VIEW NEURON MODEL
         // ##########################
@@ -124,9 +142,19 @@ uint32_t Network::propagateForward(const std::pair<double, double> &input)
         // ##########################
 
     }
-    
-    double *nums = network.neuronLayers[network.neuronLayersCount - 1]->getAllElements();
-    std::cout << "OUTPUT: " << nums[0] << std::endl;
+
+    // double *nums = network.neuronLayers[network.neuronLayersCount - 1]->getAllElements();
+    // std::cout << "OUTPUT: " << nums[0] << std::endl;
     
     return ErrorCode::success;
+}
+
+uint32_t Network::calculateError(double outputData)
+{
+    double *nums = network.neuronLayers[network.neuronLayersCount - 1]->getAllElements();
+    const double outputValue = nums[0];
+
+    const double error = abs(outputData - outputValue);
+
+    
 }

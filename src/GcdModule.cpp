@@ -29,7 +29,7 @@ uint32_t runGcdModule(int argc, const char **argv)
     // ######################### DEBUG
     // Add to CLI
     std::vector<int> networkStruct = {2, 3, 2, 3, 1};
-    double nums[] = {0, 0, 0, 0};
+    double nums[] = {0, 0, 0, 0}; // CHANGE TO ONE ELEMENT 0|1
     Vector networkOffset(nums, networkStruct.size() - 1);
     int learningRate = 0.3f;
     // ######################### !DEBUG

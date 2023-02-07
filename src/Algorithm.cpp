@@ -20,6 +20,11 @@ double ActivationFunctions::hyperbolicTangent(double x)
     return 1 / (pow(M_E, x) + pow(M_E, -x));
 }
 
+double ActivationFunctions::hyperbolic(double x)
+{
+    return 1.l / x;
+}
+
 double ActivationFunctions::exponential(double x)
 {
     return pow(M_E, -x);

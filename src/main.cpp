@@ -22,7 +22,7 @@ void printHelp()
     std::cout << "--------------------------------------" << std::endl;
 }
 
-int main(int argc, const char **argv) 
+int main(int argc, const char **argv)  
 {
     const std::string helpWord = "-help";
 
@@ -43,6 +43,9 @@ int main(int argc, const char **argv)
 
             return 1;
         }
+
+        // - НОРМАЛИЗАЦИЯ 
+        // - Эпохи. итерации
 
         uint32_t isRunModule = NetworkManager::runModule(module, argc, argv);
 

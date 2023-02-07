@@ -15,6 +15,8 @@ namespace ActivationFunctions
 
     double hyperbolicTangent(double x);
 
+    double hyperbolic(double x);
+
     double exponential(double x);
     
     double quadratic(double x);

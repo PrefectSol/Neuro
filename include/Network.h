@@ -30,12 +30,17 @@ private:
         Matrix **weightsLayers;
         int weightsLayersCount;
 
-        Vector *offsetLayers;
+        Matrix **weightsErrors;
+        int weightsErrorsCount;
+
+        Vector *offsetLayers; // one element of bios (int)
     } networkModel;
 
     networkModel network;
 
     uint32_t propagateForward(const std::pair<double, double> &input);
+
+    uint32_t calculateError(double outputData);
 };
 
 #endif // !NETWORK_H
