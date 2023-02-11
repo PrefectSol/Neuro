@@ -35,12 +35,12 @@ To set custom settings, create a conf.json using the ```create``` command, chang
 
  - [JsonCpp](https://github.com/open-source-parsers/jsoncpp)
 
-    ### Installing on Linux
-    ```bash
-    sudo pacman -S cmake jsoncpp
-    ```
+### Installation on Linux
+```bash
+sudo pacman -S cmake jsoncpp
+```
 
-    ### Installing on Windows
-    ```bash
-    winget install cmake
+### Installation on Windows
+```bash
+winget install cmake
     ```
