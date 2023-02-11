@@ -1,18 +1,51 @@
 #include "NetworkManager.h"
 
-uint32_t NetworkManager::runModule(int module, int argc, const char **argv)
+uint32_t NetworkManager::runModule(const Json::Value &config, ErrorCode modulesResult[2])
 {
-    uint32_t isRunModule;
-    switch (module)
+    uint32_t runTestingModuleCode;
+    const int runTestingModule = config["Testing modules"]["Run the module"].asInt();
+    switch (runTestingModule)
     {
-    case Module::GCD:
-        isRunModule = runGcdModule(argc, argv);
+    case 0:
+        runTestingModuleCode = ErrorCode::moduleNotSelected;
         break;
-    
+
+    case 1:
+        runTestingModuleCode = runGcdModule(config);
+        break;
+
+    case 2:
+        runTestingModuleCode = ErrorCode::unavailableModule;
+        break;
+
     default:
-        isRunModule = ErrorCode::unavailableModule;
+        runTestingModuleCode = ErrorCode::cannotFindModule;
         break;
     }
 
-    return isRunModule;
+    uint32_t runImplementationModuleCode;
+    const int runImplementationModule = config["Implementation modules"]["Run the module"].asInt();
+    switch (runImplementationModule)
+    {
+    case 0:
+        runImplementationModuleCode = ErrorCode::moduleNotSelected;
+        break;
+        
+    case 1:
+        runImplementationModuleCode =  ErrorCode::unavailableModule;
+        break;
+
+    case 2:
+        runImplementationModuleCode = ErrorCode::unavailableModule;
+        break;
+
+    default:
+        runImplementationModuleCode = ErrorCode::cannotFindModule;
+        break;
+    }
+
+    modulesResult[0] = (ErrorCode)runTestingModuleCode;
+    modulesResult[1] = (ErrorCode)runImplementationModuleCode;
+
+    return runTestingModuleCode && runImplementationModuleCode;
 }

@@ -273,6 +273,30 @@ src/NetworkManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/NetworkManager.cpp.s
 .PHONY : src/NetworkManager.cpp.s
 
+src/ParsingModule.o: src/ParsingModule.cpp.o
+.PHONY : src/ParsingModule.o
+
+# target to build an object file
+src/ParsingModule.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/ParsingModule.cpp.o
+.PHONY : src/ParsingModule.cpp.o
+
+src/ParsingModule.i: src/ParsingModule.cpp.i
+.PHONY : src/ParsingModule.i
+
+# target to preprocess a source file
+src/ParsingModule.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/ParsingModule.cpp.i
+.PHONY : src/ParsingModule.cpp.i
+
+src/ParsingModule.s: src/ParsingModule.cpp.s
+.PHONY : src/ParsingModule.s
+
+# target to generate assembly for a file
+src/ParsingModule.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/ParsingModule.cpp.s
+.PHONY : src/ParsingModule.cpp.s
+
 src/Vector.o: src/Vector.cpp.o
 .PHONY : src/Vector.o
 
@@ -348,6 +372,9 @@ help:
 	@echo "... src/NetworkManager.o"
 	@echo "... src/NetworkManager.i"
 	@echo "... src/NetworkManager.s"
+	@echo "... src/ParsingModule.o"
+	@echo "... src/ParsingModule.i"
+	@echo "... src/ParsingModule.s"
 	@echo "... src/Vector.o"
 	@echo "... src/Vector.i"
 	@echo "... src/Vector.s"

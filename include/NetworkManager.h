@@ -1,18 +1,19 @@
 #ifndef NETWORKMANAGER_H
 #define NETWORKMANAGER_H
 
-#include "AuditLog.h"
-#include "GcdModule.h"
+#include <fstream>
 
-enum Module
-{
-    GCD = 0
-};
+#include <json/json.h>
+
+#include "AuditLog.h"
+
+#include "Modules/GcdModule.h"
+#include "Modules/ParsingModule.h"
 
 class NetworkManager
 {
 public:
-    static uint32_t runModule(int module, int argc, const char **argv);
+    static uint32_t runModule(const Json::Value &config, ErrorCode modulesResult[2] = {});
 
 protected:
 

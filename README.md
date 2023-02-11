@@ -1,11 +1,18 @@
-# Neuro: preparatory project
+# Neuro: still preparatory project 
 
 CLI for training and implementation of new modules in neural networks.
 
 
-## Modules
+## Testing Modules
 
-- GCD: finding the greatest common divisor (dev) - simple test module.
+- GCD: finding the greatest common divisor
+- Parsing: getting information from the Internet by key text.
+- Vision (features): object recognition.
+
+## Implementation Modules
+
+- Matrix: write the matrix of neural network.
+- Memory: save data in the neural network memory.
 
 
 ## Build and Run
@@ -17,3 +24,7 @@ cmake .
 make
 ./Neuro
 ```
+
+## Custom run
+
+To set custom settings, create a conf.json using the ```create``` command, change the settings in the created file, then ```run``` the utility using the run command.

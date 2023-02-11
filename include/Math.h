@@ -31,6 +31,8 @@ class Vector
 public:
     Vector(double *nums, int size);
 
+    Vector(double num, int size);
+
     Vector(int size);
 
     ~Vector();

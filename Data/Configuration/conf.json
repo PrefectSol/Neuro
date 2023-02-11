@@ -1,0 +1,25 @@
+{
+	"Implementation modules" : 
+	{
+		"Run the module" : 0
+	},
+	"Testing modules" : 
+	{
+		"GCD" : 
+		{
+			"File for generating gcd data" : "Data/GCD/gcd.txt",
+			"Generating gcd data in memory" : true,
+			"bios neuron" : 0.0,
+			"learning rate" : 0.30000001192092896,
+			"max number of data" : 10000,
+			"network structure" : "23231",
+			"number of epochs" : 1,
+			"number of iterations" : 0
+		},
+		"Parsing" : 
+		{
+			"key text" : "some text"
+		},
+		"Run the module" : 1
+	}
+}

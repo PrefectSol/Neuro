@@ -7,6 +7,18 @@ Vector::Vector(double *nums, int size)
     this->vector = nums;
 }
 
+Vector::Vector(double num, int size)
+    : isDynamicVector(true)
+{
+    this->size = size;
+
+    vector = new double[size];
+    for(int i = 0; i < size; i++)
+    {
+        vector[i] = num;
+    }
+}
+
 Vector::Vector(int size)
     : isDynamicVector(true)
 {

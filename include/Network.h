@@ -11,7 +11,8 @@
 class Network 
 {
 public:    
-    Network(const std::vector<int> &networkStruct, Vector &networkOffset, int learningRate);
+    // Feed Forward Model
+    Network(const std::vector<int> &networkStruct, double bios, double learningRate);
     
     ~Network();
 
@@ -20,7 +21,8 @@ public:
 protected:
 
 private:
-    const int learningRate;
+    const double learningRate;
+    const double bios;
 
     typedef struct networkModel 
     {
@@ -32,15 +34,19 @@ private:
 
         Matrix **weightsErrors;
         int weightsErrorsCount;
-
-        Vector *offsetLayers; // one element of bios (int)
     } networkModel;
 
     networkModel network;
 
     uint32_t propagateForward(const std::pair<double, double> &input);
 
-    uint32_t calculateError(double outputData);
+    void calculateError(double outputData);
+
+    void updateWeights();
+
+    void printModel();
+
+    void printOutput();
 };
 
 #endif // !NETWORK_H

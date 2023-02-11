@@ -4,6 +4,9 @@
 #include <iostream>
 #include <cmath>
 #include <filesystem>
+#include <fstream>
+
+#include <json/json.h>
 
 namespace ActivationFunctions
 {
@@ -28,6 +31,10 @@ namespace ActivationFunctions
 
 bool isPathExists(std::string filename);
 
+bool isCorrectExtension(std::string filename, std::string extension);
+
+bool isFileExists(std::string filename, std::string extension);
+
 bool str2int(std::string str, int *num);
 
 double getRandomDouble();
@@ -35,5 +42,7 @@ double getRandomDouble();
 int getGcd(int a, int b);
 
 void initArray(double *array, int size, double value);
+
+void createConfig(std::string path);
 
 #endif // !ALGORITHM
