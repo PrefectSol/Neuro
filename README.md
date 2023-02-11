@@ -6,7 +6,7 @@ CLI for training and implementation of new modules in neural networks.
 ## Testing Modules
 
 - GCD: finding the greatest common divisor
-- Parsing: getting information from the Internet by key text.
+- Parsing (features): getting information from the Internet by key text.
 - Vision (features): object recognition.
 
 ## Implementation Modules (Features)
