@@ -9,7 +9,7 @@ CLI for training and implementation of new modules in neural networks.
 - Parsing: getting information from the Internet by key text.
 - Vision (features): object recognition.
 
-## Implementation Modules
+## Implementation Modules (Features)
 
 - Matrix: write the matrix of neural network.
 - Memory: save data in the neural network memory.
