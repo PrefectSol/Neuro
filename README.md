@@ -28,3 +28,19 @@ make
 ## Custom run
 
 To set custom settings, create a conf.json using the ```create``` command, change the settings in the created file, then ```run``` the utility using the run command.
+
+## Dependencies
+
+ - [CMake](https://github.com/Kitware/CMake)
+
+ - [JsonCpp](https://github.com/open-source-parsers/jsoncpp)
+
+    ### Installing on Linux
+    ```bash
+    sudo pacman -S cmake jsoncpp
+    ```
+
+    ### Installing on Windows
+    ```bash
+    winget install cmake
+    ```
