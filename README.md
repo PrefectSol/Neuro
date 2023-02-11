@@ -41,6 +41,7 @@ sudo pacman -S cmake jsoncpp
 ```
 
 ### Installation on Windows
+
 ```bash
 winget install cmake
-    ```
+```
