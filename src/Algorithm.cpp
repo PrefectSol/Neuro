@@ -126,7 +126,7 @@ void createConfig(std::string path)
     
     // Feed Forward Structure
     config["Testing modules"]["GCD"]["network structure"] = "23231"; // input | ... hidden ... | output. Num - count of neurons on layer
-    config["Testing modules"]["GCD"]["bios neuron"] = 0.0;
+    config["Testing modules"]["GCD"]["bias neuron"] = 0.0f;
     config["Testing modules"]["GCD"]["learning rate"] = 0.3f;
 
     config["Testing modules"]["Parsing"]["key text"] = "some text";

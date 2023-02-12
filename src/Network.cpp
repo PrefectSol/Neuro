@@ -1,7 +1,7 @@
 #include "Network.h"
 
-Network::Network(const std::vector<int> &networkStruct, double bios, double learningRate)
-    : learningRate(learningRate), bios(bios)
+Network::Network(const std::vector<int> &networkStruct, double bias, double learningRate)
+    : learningRate(learningRate), bias(bias)
 {
     network.neuronLayersCount = networkStruct.size();
     network.neuronLayers = new Vector*[network.neuronLayersCount];
@@ -78,13 +78,13 @@ uint32_t Network::propagateForward(const std::pair<double, double> &input)
     {
         const int layerSize = network.neuronLayers[i]->getSize();
 
-        Vector biosLayer(bios, layerSize);
+        Vector biasLayer(bias, layerSize);
         Vector matrix2vectorResult(layerSize);
         Vector vector2vectorResult(layerSize);
         Vector newNeuronLayer(layerSize);
         
         BasicOperations::multiplyMatrix2Vector(*network.weightsLayers[i - 1], *network.neuronLayers[i - 1], &matrix2vectorResult);
-        BasicOperations::sumVector2Vector(matrix2vectorResult, biosLayer, &vector2vectorResult);
+        BasicOperations::sumVector2Vector(matrix2vectorResult, biasLayer, &vector2vectorResult);
         BasicOperations::activateNeuronLayer(activationFunc, vector2vectorResult, &newNeuronLayer);
         
         network.neuronLayers[i]->setSizedData(newNeuronLayer.getAllElements(), newNeuronLayer.getSize());

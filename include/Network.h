@@ -12,7 +12,7 @@ class Network
 {
 public:    
     // Feed Forward Model
-    Network(const std::vector<int> &networkStruct, double bios, double learningRate);
+    Network(const std::vector<int> &networkStruct, double bias, double learningRate);
     
     ~Network();
 
@@ -22,7 +22,7 @@ protected:
 
 private:
     const double learningRate;
-    const double bios;
+    const double bias;
 
     typedef struct networkModel 
     {
