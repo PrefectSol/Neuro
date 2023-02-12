@@ -51,7 +51,7 @@ To view the hints to the ```conf.json``` using the ```help``` command
 
 ## Personal comment
 
-```bash
+```rust
 // There is still a lot of coding to do.
 // Now I just managed to launch a neural network, then I should optimize it
 // And revise some design decisions.
