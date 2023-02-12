@@ -25,9 +25,12 @@ make
 ./Neuro
 ```
 
+
 ## Custom run
 
 To set custom settings, create a conf.json using the ```create``` command, change the settings in the created file, then ```run``` the utility using the run command.
+
+To view the hints to the ```conf.json``` parameters see ```src/Algorithm.cpp```/```createConfig()``` method
 
 ## Dependencies
 
@@ -35,13 +38,12 @@ To set custom settings, create a conf.json using the ```create``` command, chang
 
  - [JsonCpp](https://github.com/open-source-parsers/jsoncpp)
 
-### Installation on Linux
-```bash
-sudo pacman -S cmake jsoncpp
-```
+    ### Installation on Linux (Arch)
+    ```bash
+    sudo pacman -S cmake jsoncpp
+    ```
 
-### Installation on Windows
-
-```bash
-winget install cmake
-```
+    ### Installation on Windows
+    ```bash
+    winget install cmake
+    ```
