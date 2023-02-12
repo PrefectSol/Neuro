@@ -1,13 +1,13 @@
 # Neuro: Early project 
 
-CLI for training and implementation of new modules in neural networks.
-
+CLI for training and implementation of new modules in the main neural network stream
 
 ## Testing Modules
 
-- GCD: finding the greatest common divisor
+- GCD: finding the greatest common divisor.
 - Parsing (features): getting information from the Internet by key text.
 - Vision (features): object recognition.
+- Text Handler: chatting.
 
 ## Implementation Modules (Features)
 
@@ -51,4 +51,8 @@ To view the hints to the ```conf.json``` using the ```help``` command
 
 ## Personal comment
 
-There is still a lot of coding to do. Now I just managed to launch a neural network, then I should optimize it and revise some design decisions.
+```bash
+// There is still a lot of coding to do.
+// Now I just managed to launch a neural network, then I should optimize it
+// And revise some design decisions.
+```
