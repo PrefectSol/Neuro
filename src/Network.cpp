@@ -1,6 +1,6 @@
 #include "Network.h"
 
-Network::Network(const std::vector<int> &networkStruct, double bias, double learningRate)
+Network::Network(const std::vector<int> &networkStruct, const Functions &func, double bias, double learningRate)
     : learningRate(learningRate), bias(bias)
 {
     network.neuronLayersCount = networkStruct.size();
@@ -10,6 +10,13 @@ Network::Network(const std::vector<int> &networkStruct, double bias, double lear
         network.neuronLayers[i] = new Vector(networkStruct[i]);
     }
 
+    network.neuronErrorsCount = networkStruct.size() - 1;
+    network.neuronErrors = new Vector*[network.neuronErrorsCount];
+    for(int i = 0; i < network.neuronErrorsCount; i++)
+    {
+        network.neuronErrors[i] = new Vector(networkStruct[i + 1]);
+    }
+
     network.weightsLayersCount = networkStruct.size() - 1;
     network.weightsLayers = new Matrix*[network.weightsLayersCount];
     for(int i = 0; i < network.weightsLayersCount; i++)
@@ -17,11 +24,55 @@ Network::Network(const std::vector<int> &networkStruct, double bias, double lear
         network.weightsLayers[i] = new Matrix(networkStruct[i + 1], networkStruct[i]);
     }
 
-    network.weightsErrorsCount = networkStruct.size() - 1;
-    network.weightsErrors = new Matrix*[network.weightsErrorsCount];
-    for(int i = 0; i < network.weightsErrorsCount; i++)
+    switch (func)
     {
-        network.weightsErrors[i] = new Matrix(networkStruct[i + 1], networkStruct[i], false);
+    case 0:
+        activationFunc = ActivationFunctions::linear;
+        derivativeFunc = DerivativeFunctions::linear;
+        break;
+
+    case 1:
+        activationFunc = ActivationFunctions::semiLinear;
+        derivativeFunc = DerivativeFunctions::semiLinear;
+        break;
+
+    case 2:
+        activationFunc = ActivationFunctions::sigmoid;
+        derivativeFunc = DerivativeFunctions::sigmoid;
+        break;
+
+    case 3:
+        activationFunc = ActivationFunctions::hyperbolicTangent;
+        derivativeFunc = DerivativeFunctions::hyperbolicTangent;
+        break;
+
+    case 4:
+        activationFunc = ActivationFunctions::hyperbolic;
+        derivativeFunc = DerivativeFunctions::hyperbolic;
+        break;
+
+    case 5:
+        activationFunc = ActivationFunctions::exponential;
+        derivativeFunc = DerivativeFunctions::exponential;
+        break;
+
+    case 6:
+        activationFunc = ActivationFunctions::quadratic;
+        derivativeFunc = DerivativeFunctions::quadratic;
+        break;
+
+    case 7:
+        activationFunc = ActivationFunctions::sign;
+        derivativeFunc = DerivativeFunctions::sign;
+        break;
+
+    case 8:
+        activationFunc = ActivationFunctions::single;
+        derivativeFunc = DerivativeFunctions::single;
+        break;
+
+    default:
+        throw std::runtime_error("Cannot find function.");
     }
 }
 
@@ -39,11 +90,11 @@ Network::~Network()
     }
     delete[] network.weightsLayers;
 
-    for(int i = 0; i < network.weightsErrorsCount; i++)
+    for(int i = 0; i < network.neuronErrorsCount; i++)
     {
-        delete network.weightsErrors[i];
+        delete network.neuronErrors[i];
     }
-    delete[] network.weightsErrors;
+    delete[] network.neuronErrors;
 }
 
 uint32_t Network::runTrainNetwork(const std::vector<std::pair<double, double>> &inputData, const std::vector<double> &outputData)
@@ -56,8 +107,15 @@ uint32_t Network::runTrainNetwork(const std::vector<std::pair<double, double>> &
             return propagateForwardCode;
         }
 
-        calculateError(outputData[i]);
-        updateWeights();
+        uint32_t propagateBackwardCode = propagateBackward(outputData[i]);
+        if (propagateBackwardCode != ErrorCode::success)
+        {
+            return propagateBackwardCode;
+        }
+
+    #ifdef VIEW_ERROR
+        std::cout << "MSE: " << error << std::endl;
+    #endif // !VIEW_ERROR
     }
 
     return ErrorCode::success;
@@ -65,8 +123,6 @@ uint32_t Network::runTrainNetwork(const std::vector<std::pair<double, double>> &
 
 uint32_t Network::propagateForward(const std::pair<double, double> &input)
 {
-    double (*activationFunc)(double x) = ActivationFunctions::sigmoid;
-
     double inputLayer[2] = { activationFunc(input.first), activationFunc(input.second) };
     uint32_t isSetInput = network.neuronLayers[0]->setSizedData(inputLayer, 2);
     if (isSetInput != ErrorCode::success)
@@ -90,22 +146,69 @@ uint32_t Network::propagateForward(const std::pair<double, double> &input)
         network.neuronLayers[i]->setSizedData(newNeuronLayer.getAllElements(), newNeuronLayer.getSize());
     }
     
-    printOutput();
+    return ErrorCode::success;
+}
+
+uint32_t Network::propagateBackward(double correctOutput)
+{
+    calculateError(correctOutput);
+    updateWeights();
 
     return ErrorCode::success;
 }
 
-void Network::calculateError(double outputData)
+uint32_t Network::calculateError(double correctOutput)
 {
     double *nums = network.neuronLayers[network.neuronLayersCount - 1]->getAllElements();
     const double outputValue = nums[0];
 
-    const double error = abs(outputData - outputValue);
+    error = pow(correctOutput - outputValue, 2) / 2.0;
+    network.neuronErrors[3]->setSizedData(&error, 1);
+
+    for(int i = network.neuronErrorsCount - 2; i >= 0; i--)
+    {
+        const int layerSize = network.neuronErrors[i]->getSize();
+
+        Vector newErrorLayer(layerSize);
+        Matrix transposeWeight(network.weightsLayers[i + 1]->getCols(), network.weightsLayers[i + 1]->getRows());
+        
+        BasicOperations::transposeMatrix(*network.weightsLayers[i + 1], &transposeWeight);
+        BasicOperations::multiplyMatrix2Vector(transposeWeight, *network.neuronErrors[i + 1], &newErrorLayer);
+
+        network.neuronErrors[i]->setSizedData(newErrorLayer.getAllElements(), newErrorLayer.getSize());
+    }
+
+    return ErrorCode::success;
 }
 
-void Network::updateWeights()
+uint32_t Network::updateWeights()
 {
-    // ...
+    for(int i = 0; i < network.weightsLayersCount; i++)
+    {
+        const int layerRows = network.weightsLayers[i]->getRows();
+        const int layerCols = network.weightsLayers[i]->getCols();
+
+        double correctiveValues[layerRows][layerCols];
+        for(int j = 0; j < layerRows; j++)
+        {
+            for(int k = 0; k < layerCols; k++)
+            {
+                correctiveValues[j][k] = network.weightsLayers[i]->matrix[j][k] + learningRate * network.neuronErrors[i]->vector[j] * derivativeFunc(network.neuronLayers[i]->vector[j]);
+            }
+        }
+
+        Matrix corrective(layerRows, layerCols, correctiveValues);
+
+        network.weightsLayers[i]->setData(corrective);
+    }
+
+    return ErrorCode::success;
+}
+
+double Network::getOutput()
+{
+    double *nums = network.neuronLayers[network.neuronLayersCount - 1]->getAllElements();
+    return nums[0];
 }
 
 void Network::printModel()
@@ -144,13 +247,36 @@ void Network::printModel()
         }
     }
     std::cout << "--------------------------------" << std::endl;
+
+    std::cout << "Errors:" << std::endl;
+    for(int k = 0; k < network.neuronErrorsCount; k++)
+    {
+        std::cout << "\tLayer " << k << std::endl;
+        double *layer = network.neuronErrors[k]->getAllElements();
+        for(int j = 0; j < network.neuronErrors[k]->getSize(); j++)
+        {
+            std::cout << "\t\t\t" << layer[j] << std::endl;
+        }
+        std::cout << std::endl;
+    }
+    std::cout << "--------------------------------" << std::endl;
+
 }
 
 void Network::printOutput()
 {
-    double *nums = network.neuronLayers[network.neuronLayersCount - 1]->getAllElements();
-    for(int i = 0; i < network.neuronLayers[network.neuronLayersCount - 1]->getSize(); i++)
+    std::cout << getOutput() << std::endl;
+}
+
+uint32_t Network::calculate(const std::pair<double, double> &input, double *output)
+{
+    uint32_t propagateForwardCode = propagateForward(input);
+    if (propagateForwardCode != ErrorCode::success)
     {
-        std::cout << nums[i] << std::endl;
-    } 
+        return propagateForwardCode;
+    }
+
+    *output = getOutput();
+
+    return ErrorCode::success;
 }

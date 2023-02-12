@@ -1,4 +1,8 @@
-#define RELEASE
+#define EARLY_PROJECT
+#define DEBUG_false
+
+#define INDENT_3 "   "
+#define INDENT_6 "      "
 
 #include <json/json.h>
 
@@ -18,23 +22,33 @@ void printUsage()
 void printHelp()
 {
     std::cout << "--------------------------------------" << std::endl;
-    std::cout << "VERSION: 0.0.7 \t NAME: Neuro" << std::endl;
+    std::cout << "VERSION: 0.1 \t NAME: Neuro" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
 
     std::cout << "Arguments:" << std::endl <<
-        "   " << _commandRun << " <path to config.json file>" << std::endl << 
-        "   " << _commandCreate << " <path to config.json file>" << std::endl;
+        INDENT_3 << _commandRun << " <path to config.json file>" << std::endl << 
+        INDENT_3 << _commandCreate << " <path to config.json file>" << std::endl;
 
     std::cout << "--------------------------------------" << std::endl;
-    std::cout << "Testing modules:" << std::endl <<
-        "   " << "1 - GCD module" << ": finding the greatest common divisor" << std::endl << 
-        "   " << "2 - Parsing module" << ": getting information from the Internet by key text" << std::endl << 
-        "   " << "3 - Vision module (?)" << ": object recognition" << std::endl;
+    std::cout << "Run Testing Modules:" << std::endl <<
+        INDENT_3 << "1 - GCD module" << ": finding the greatest common divisor" << std::endl << 
+        INDENT_3 << "2 - Parsing module" << ": getting information from the Internet by key text" << std::endl << 
+        INDENT_3 << "3 - Vision module (?)" << ": object recognition" << std::endl;
+    std::cout << std::endl << INDENT_3 << "Activation/Derivative function:" << std::endl <<
+        INDENT_6 << "0 - linear" << std::endl << 
+        INDENT_6 << "1 - semiLinear" << std::endl << 
+        INDENT_6 << "2 - sigmoid" << std::endl << 
+        INDENT_6 << "3 - hyperbolicTangent" << std::endl << 
+        INDENT_6 << "4 - hyperbolic" << std::endl << 
+        INDENT_6 << "5 - exponential" << std::endl << 
+        INDENT_6 << "6 - quadratic" << std::endl << 
+        INDENT_6 << "7 - sign" << std::endl << 
+        INDENT_6 << "8 - single" << std::endl;
 
     std::cout << "--------------------------------------" << std::endl;
-    std::cout << "Implementation modules: (Futures)" << std::endl <<
-        "   " << "1 - Matrix module" << ": write the matrix of neural network" << std::endl << 
-        "   " << "2 - Memory module" << ": save data in the neural network memory" << std::endl;
+    std::cout << "Run Implementation Modules: (Futures)" << std::endl <<
+        INDENT_3 << "1 - Matrix module" << ": write the matrix of neural network" << std::endl << 
+        INDENT_3 << "2 - Memory module" << ": save data in the neural network memory" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
 }
 

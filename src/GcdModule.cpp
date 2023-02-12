@@ -17,7 +17,8 @@ uint32_t runGcdModule(const Json::Value &config)
 
     const double learningRate = config["Testing modules"]["GCD"]["learning rate"].asDouble();
     const double bias = config["Testing modules"]["GCD"]["bias neuron"].asDouble();
-    
+    Functions function = (Functions)(config["Testing modules"]["Activation function"].asInt());
+
     const std::string feedForwardModel = config["Testing modules"]["GCD"]["network structure"].asString();
     std::vector<int> networkStruct;
     for(const auto &i : feedForwardModel) 
@@ -25,7 +26,8 @@ uint32_t runGcdModule(const Json::Value &config)
         networkStruct.push_back(i - '0');
     }
 
-    Network network(networkStruct, bias, learningRate);
+
+    Network network(networkStruct, function , bias, learningRate);
     uint32_t runTrainCode = network.runTrainNetwork(inputData, outputData);
     if (runTrainCode != ErrorCode::success)
     {

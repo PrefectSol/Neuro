@@ -17,7 +17,7 @@ double ActivationFunctions::sigmoid(double x)
 
 double ActivationFunctions::hyperbolicTangent(double x)
 {
-    return 1 / (pow(M_E, x) + pow(M_E, -x));
+    return hyperbolicSin(x) / hyperbolicCos(x);
 }
 
 double ActivationFunctions::hyperbolic(double x)
@@ -43,6 +43,65 @@ double ActivationFunctions::sign(double x)
 double ActivationFunctions::single(double x)
 {
     return x;
+}
+
+
+
+double DerivativeFunctions::linear(double x)
+{
+    return 2;
+}
+
+double DerivativeFunctions::semiLinear(double x)
+{
+    return x > 0 ? 2 : 0;
+}
+
+double DerivativeFunctions::sigmoid(double x)
+{
+    return ActivationFunctions::sigmoid(x) * (1 - ActivationFunctions::sigmoid(x));
+}
+
+double DerivativeFunctions::hyperbolicTangent(double x)
+{
+    return 1 / pow(hyperbolicCos(x), 2);
+}
+
+double DerivativeFunctions::hyperbolic(double x)
+{
+    return -1.l / pow(x, 2);
+}
+
+double DerivativeFunctions::exponential(double x)
+{
+    return pow(M_E, -x);
+}
+
+double DerivativeFunctions::quadratic(double x)
+{
+    return 2 * x;
+}
+
+double DerivativeFunctions::sign(double x)
+{
+    return 0;
+}
+
+double DerivativeFunctions::single(double x)
+{
+    return 1;
+}
+
+
+
+double hyperbolicCos(double x)
+{
+    (pow(M_E, x) + pow(M_E, -x)) / 2;
+}
+
+double hyperbolicSin(double x)
+{
+    (pow(M_E, x) - pow(M_E, -x)) / 2;
 }
 
 bool isPathExists(std::string filename)
@@ -116,6 +175,7 @@ void createConfig(std::string path)
     Json::Value config;
 
     config["Testing modules"]["Run the module"] = 1;
+    config["Testing modules"]["Activation function"] = 2;
 
     config["Testing modules"]["GCD"]["number of epochs"] = 500000;
     config["Testing modules"]["GCD"]["number of iterations"] = 2; // negative and positive numbers = (-1)^n

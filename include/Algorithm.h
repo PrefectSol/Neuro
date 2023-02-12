@@ -8,6 +8,19 @@
 
 #include <json/json.h>
 
+enum Functions
+{
+    linear = 0,
+    semiLinear,
+    sigmoid,
+    hyperbolicTangent,
+    hyperbolic,
+    exponential,
+    quadratic,
+    sign,
+    single
+};
+
 namespace ActivationFunctions
 {
     double linear(double x);
@@ -28,6 +41,31 @@ namespace ActivationFunctions
 
     double single(double x);
 };
+
+namespace DerivativeFunctions
+{
+    double linear(double x);
+
+    double semiLinear(double x);
+
+    double sigmoid(double x);
+
+    double hyperbolicTangent(double x);
+
+    double hyperbolic(double x);
+
+    double exponential(double x);
+    
+    double quadratic(double x);
+
+    double sign(double x);
+
+    double single(double x);
+}
+
+double hyperbolicCos(double x);
+
+double hyperbolicSin(double x);
 
 bool isPathExists(std::string filename);
 

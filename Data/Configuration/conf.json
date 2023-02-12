@@ -5,16 +5,17 @@
 	},
 	"Testing modules" : 
 	{
+		"Activation function" : 2,
 		"GCD" : 
 		{
 			"File for generating gcd data" : "Data/GCD/gcd.txt",
 			"Generating gcd data in memory" : true,
-			"bios neuron" : 0.0,
+			"bias neuron" : 0.0,
 			"learning rate" : 0.30000001192092896,
 			"max number of data" : 10000,
 			"network structure" : "23231",
-			"number of epochs" : 1,
-			"number of iterations" : 0
+			"number of epochs" : 500000,
+			"number of iterations" : 2
 		},
 		"Parsing" : 
 		{

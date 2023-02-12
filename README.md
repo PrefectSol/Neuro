@@ -1,4 +1,4 @@
-# Neuro: still preparatory project 
+# Neuro: Early project 
 
 CLI for training and implementation of new modules in neural networks.
 
@@ -30,7 +30,8 @@ make
 
 To set custom settings, create a conf.json using the ```create``` command, change the settings in the created file, then ```run``` the utility using the run command.
 
-To view the hints to the ```conf.json``` parameters see ```src/Algorithm.cpp```/```createConfig()``` method
+To view the hints to the ```conf.json``` using the ```help``` command
+
 
 ## Dependencies
 
@@ -47,3 +48,7 @@ To view the hints to the ```conf.json``` parameters see ```src/Algorithm.cpp```/
     ```bash
     winget install cmake
     ```
+
+## Personal comment
+
+There is still a lot of coding to do. Now I just managed to launch a neural network, then I should optimize it and revise some design decisions.

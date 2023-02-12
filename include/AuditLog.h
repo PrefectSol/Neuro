@@ -17,6 +17,7 @@ enum ErrorCode
 
     cannotCreateMatrix,
     indexOutsideMatrix,
+    invalidMatrixSize,
     invalidMatrix,
 
     incorrectVectorSize,
