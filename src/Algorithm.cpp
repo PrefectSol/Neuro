@@ -149,7 +149,7 @@ double getRandomDouble()
     return (double)(RAND_MAX) / (double)(rand());
 }
 
-int getGcd(int a, int b)
+double getGcd(int a, int b)
 {
     a = abs(a);
     b = abs(b);
@@ -174,22 +174,25 @@ void createConfig(std::string path)
 {
     Json::Value config;
 
-    config["Testing modules"]["Run the module"] = 1;
-    config["Testing modules"]["Activation function"] = 2;
+    config["Creation modules"]["Run the module"] = 1;
+    config["Creation modules"]["Activation function"] = 2;
 
-    config["Testing modules"]["GCD"]["number of epochs"] = 500000;
-    config["Testing modules"]["GCD"]["number of iterations"] = 2; // negative and positive numbers = (-1)^n
+    config["Creation modules"]["GCD"]["number of epochs"] = 500000;
+    config["Creation modules"]["GCD"]["number of iterations"] = 2; // negative and positive numbers = (-1)^n
 
-    config["Testing modules"]["GCD"]["Generating gcd data in memory"] = true; // Memory(true) | File(false)
-    config["Testing modules"]["GCD"]["File for generating gcd data"] = "Data/GCD/gcd.txt"; // If File(false)
-    config["Testing modules"]["GCD"]["max number of data"] = 10000;
+    config["Creation modules"]["GCD"]["Generating gcd data in memory"] = true; // Memory(true) | File(false)
+    config["Creation modules"]["GCD"]["File for generating gcd data"] = "Data/GCD/gcd.txt"; // If File(false)
+    config["Creation modules"]["GCD"]["max number of data"] = 10000;
     
     // Feed Forward Structure
-    config["Testing modules"]["GCD"]["network structure"] = "23231"; // input | ... hidden ... | output. Num - count of neurons on layer
-    config["Testing modules"]["GCD"]["bias neuron"] = 0.0f;
-    config["Testing modules"]["GCD"]["learning rate"] = 0.3f;
+    config["Creation modules"]["GCD"]["network structure"] = "23231"; // input | ... hidden ... | output. Num - count of neurons on layer
+    config["Creation modules"]["GCD"]["bias neuron"] = 0.0f;
 
-    config["Testing modules"]["Parsing"]["key text"] = "some text";
+    config["Creation modules"]["GCD"]["Learning rate"]["is adaptive"] = true;
+    config["Creation modules"]["GCD"]["Learning rate"]["learning rate"] = 0.1f;
+    config["Creation modules"]["GCD"]["Learning rate"]["decay rate"] = 0.5f; // if ["is adaptive"] is true
+
+    config["Creation modules"]["Parsing"]["key text"] = "some text";
 
     config["Implementation modules"]["Run the module"] = 0;
     

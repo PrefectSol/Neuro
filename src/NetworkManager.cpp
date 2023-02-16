@@ -3,7 +3,7 @@
 uint32_t NetworkManager::runModule(const Json::Value &config, ErrorCode modulesResult[2])
 {
     uint32_t runTestingModuleCode;
-    const int runTestingModule = config["Testing modules"]["Run the module"].asInt();
+    const int runTestingModule = config["Creation modules"]["Run the module"].asInt();
     switch (runTestingModule)
     {
     case 0:

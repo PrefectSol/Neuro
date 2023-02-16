@@ -1,5 +1,5 @@
-#define EARLY_PROJECT
-#define DEBUG_false
+#define TEMPLATE_PROJECT
+#define DEBUG_FALSE
 
 #define INDENT_3 "   "
 #define INDENT_6 "      "
@@ -22,7 +22,7 @@ void printUsage()
 void printHelp()
 {
     std::cout << "--------------------------------------" << std::endl;
-    std::cout << "VERSION: 0.1 \t NAME: Neuro" << std::endl;
+    std::cout << "VERSION: 0.2 \t NAME: Neuro" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
 
     std::cout << "Arguments:" << std::endl <<
@@ -30,8 +30,8 @@ void printHelp()
         INDENT_3 << _commandCreate << " <path to config.json file>" << std::endl;
 
     std::cout << "--------------------------------------" << std::endl;
-    std::cout << "Run Testing Modules:" << std::endl <<
-        INDENT_3 << "1 - GCD module" << ": finding the greatest common divisor" << std::endl << 
+    std::cout << "Run Creation Modules:" << std::endl <<
+        INDENT_3 << "1 - GCD module" << ": finding the greatest common divisor (Module for testing)" << std::endl << 
         INDENT_3 << "2 - Parsing module" << ": getting information from the Internet by key text" << std::endl << 
         INDENT_3 << "3 - Vision module (?)" << ": object recognition" << std::endl;
     std::cout << std::endl << INDENT_3 << "Activation/Derivative function:" << std::endl <<
@@ -57,7 +57,7 @@ void runInDebugMode()
     const std::string configPath = "Data/Configuration/conf.json";
     const clock_t startTimer = clock();
 
-    createConfig(configPath);
+    // createConfig(configPath);
 
     // printHelp();
     // printUsage();
@@ -68,14 +68,13 @@ void runInDebugMode()
     jsonFile.close();
 
     ErrorCode modulesResult[2];
-
     uint32_t debugRunCode = NetworkManager::runModule(config, modulesResult);
 
     const clock_t finishTimer = clock();
 
     std::cout << "Execution time: " << (finishTimer - startTimer) / (double)CLOCKS_PER_SEC << std::endl;
     std::cout << "Common result: " << debugRunCode << std::endl;
-    std::cout << "Testing module result: " << modulesResult[0] << std::endl;
+    std::cout << "Creation module result: " << modulesResult[0] << std::endl;
     std::cout << "Implementation module result: " << modulesResult[1] << std::endl;
 }
 

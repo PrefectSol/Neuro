@@ -153,30 +153,6 @@ src/Algorithm.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/Algorithm.cpp.s
 .PHONY : src/Algorithm.cpp.s
 
-src/BasicOperations.o: src/BasicOperations.cpp.o
-.PHONY : src/BasicOperations.o
-
-# target to build an object file
-src/BasicOperations.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/BasicOperations.cpp.o
-.PHONY : src/BasicOperations.cpp.o
-
-src/BasicOperations.i: src/BasicOperations.cpp.i
-.PHONY : src/BasicOperations.i
-
-# target to preprocess a source file
-src/BasicOperations.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/BasicOperations.cpp.i
-.PHONY : src/BasicOperations.cpp.i
-
-src/BasicOperations.s: src/BasicOperations.cpp.s
-.PHONY : src/BasicOperations.s
-
-# target to generate assembly for a file
-src/BasicOperations.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/BasicOperations.cpp.s
-.PHONY : src/BasicOperations.cpp.s
-
 src/GcdModule.o: src/GcdModule.cpp.o
 .PHONY : src/GcdModule.o
 
@@ -200,30 +176,6 @@ src/GcdModule.s: src/GcdModule.cpp.s
 src/GcdModule.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/GcdModule.cpp.s
 .PHONY : src/GcdModule.cpp.s
-
-src/Matrix.o: src/Matrix.cpp.o
-.PHONY : src/Matrix.o
-
-# target to build an object file
-src/Matrix.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/Matrix.cpp.o
-.PHONY : src/Matrix.cpp.o
-
-src/Matrix.i: src/Matrix.cpp.i
-.PHONY : src/Matrix.i
-
-# target to preprocess a source file
-src/Matrix.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/Matrix.cpp.i
-.PHONY : src/Matrix.cpp.i
-
-src/Matrix.s: src/Matrix.cpp.s
-.PHONY : src/Matrix.s
-
-# target to generate assembly for a file
-src/Matrix.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/Matrix.cpp.s
-.PHONY : src/Matrix.cpp.s
 
 src/Network.o: src/Network.cpp.o
 .PHONY : src/Network.o
@@ -297,30 +249,6 @@ src/ParsingModule.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/ParsingModule.cpp.s
 .PHONY : src/ParsingModule.cpp.s
 
-src/Vector.o: src/Vector.cpp.o
-.PHONY : src/Vector.o
-
-# target to build an object file
-src/Vector.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/Vector.cpp.o
-.PHONY : src/Vector.cpp.o
-
-src/Vector.i: src/Vector.cpp.i
-.PHONY : src/Vector.i
-
-# target to preprocess a source file
-src/Vector.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/Vector.cpp.i
-.PHONY : src/Vector.cpp.i
-
-src/Vector.s: src/Vector.cpp.s
-.PHONY : src/Vector.s
-
-# target to generate assembly for a file
-src/Vector.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/Vector.cpp.s
-.PHONY : src/Vector.cpp.s
-
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -357,15 +285,9 @@ help:
 	@echo "... src/Algorithm.o"
 	@echo "... src/Algorithm.i"
 	@echo "... src/Algorithm.s"
-	@echo "... src/BasicOperations.o"
-	@echo "... src/BasicOperations.i"
-	@echo "... src/BasicOperations.s"
 	@echo "... src/GcdModule.o"
 	@echo "... src/GcdModule.i"
 	@echo "... src/GcdModule.s"
-	@echo "... src/Matrix.o"
-	@echo "... src/Matrix.i"
-	@echo "... src/Matrix.s"
 	@echo "... src/Network.o"
 	@echo "... src/Network.i"
 	@echo "... src/Network.s"
@@ -375,9 +297,6 @@ help:
 	@echo "... src/ParsingModule.o"
 	@echo "... src/ParsingModule.i"
 	@echo "... src/ParsingModule.s"
-	@echo "... src/Vector.o"
-	@echo "... src/Vector.i"
-	@echo "... src/Vector.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

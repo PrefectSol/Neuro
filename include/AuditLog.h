@@ -15,15 +15,18 @@ enum ErrorCode
     cannotConvertStrToInt,
     cannotOpenFile,
 
+    cannotTransposeMatrix,
     cannotCreateMatrix,
     indexOutsideMatrix,
     invalidMatrixSize,
     invalidMatrix,
 
-    incorrectVectorSize,
+    invalidVectorSize,
     indexOutsideVector,
     
     invalidNetworkOffset,
+
+    operationsFailed,
 };
 
 #endif // !AUDITLOG_H

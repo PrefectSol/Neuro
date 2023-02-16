@@ -1,17 +1,18 @@
 {
-	"Implementation modules" : 
-	{
-		"Run the module" : 0
-	},
-	"Testing modules" : 
+	"Creation modules" : 
 	{
 		"Activation function" : 2,
 		"GCD" : 
 		{
-			"File for generating gcd data" : "Data/GCD/gcd.txt",
-			"Generating gcd data in memory" : true,
+			"File for generating gcd data" : "Data/GcdModule/gcd.txt",
+			"Generating gcd data in memory" : false,
+			"Learning rate" : 
+			{
+				"decay rate" : 0.5,
+				"is adaptive" : false,
+				"learning rate" : 0.10000000149011612
+			},
 			"bias neuron" : 0.0,
-			"learning rate" : 0.30000001192092896,
 			"max number of data" : 10000,
 			"network structure" : "23231",
 			"number of epochs" : 500000,
@@ -22,5 +23,9 @@
 			"key text" : "some text"
 		},
 		"Run the module" : 1
+	},
+	"Implementation modules" : 
+	{
+		"Run the module" : 0
 	}
 }

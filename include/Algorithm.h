@@ -67,6 +67,10 @@ double hyperbolicCos(double x);
 
 double hyperbolicSin(double x);
 
+double getRandomDouble();
+
+double getGcd(int a, int b);
+
 bool isPathExists(std::string filename);
 
 bool isCorrectExtension(std::string filename, std::string extension);
@@ -74,10 +78,6 @@ bool isCorrectExtension(std::string filename, std::string extension);
 bool isFileExists(std::string filename, std::string extension);
 
 bool str2int(std::string str, int *num);
-
-double getRandomDouble();
-
-int getGcd(int a, int b);
 
 void initArray(double *array, int size, double value);
 
