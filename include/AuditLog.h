@@ -27,6 +27,7 @@ enum ErrorCode
     invalidNetworkOffset,
 
     operationsFailed,
+    cannotFindFile,
 };
 
 #endif // !AUDITLOG_H

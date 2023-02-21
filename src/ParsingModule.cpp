@@ -6,51 +6,35 @@ size_t write_to_string(void *ptr, size_t size, size_t count, void *stream) {
     return size * count;
 }
 
-int ParsingModule::parse(int argc, char **argv)
+uint32_t runParsingModule(const Json::Value &config)
 {
-    
-//     std::string html;
-//     size_t found;
-//     CURL* curl = curl_easy_init();
-//     if (curl)
-//     {
-//         string response;
-//         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_to_string);
-//         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-
-//         curl_easy_setopt(curl, CURLOPT_URL, "https://www.google.com/search?q=население+земли");
-//         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION,write_to_string);
-
-//         CURLcode res = curl_easy_perform(curl);
-//         curl_easy_cleanup(curl);
-
-//        html = response;
-//     }
-
-//     HTML::ParserDom parser;
-//     tree<HTML::Node> dom = parser.parseTree(html);
-    
-//     tree<HTML::Node>::iterator it = dom.begin();
-//     tree<HTML::Node>::iterator end = dom.end();
-//     for (; it != end; ++it)
-//     {
-//         if (it->tagName() == "A")
-//         {
-//             it->parseAttributes();
-//         }
-//     }
-    
-//     it = dom.begin();
-//     end = dom.end();
-//     for (; it != end; ++it)
-//     {
-//         if ((!it->isTag()) && (!it->isComment()))
-//         {
-//             it->tagName("h3");
-
-//             cout << it->text();
-//         }
-//     }
-
-    return 1;
+    return ErrorCode::unavailableModule;
 }
+
+vector<string> parseYandex(string query) {
+    vector<string> urls;
+    CURL *curl;
+    CURLcode res;
+    curl = curl_easy_init();
+    if (curl) {
+        string url = "https://yandex.ru/search/?text=" + query;
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+        res = curl_easy_perform(curl);
+        if (res == CURLE_OK) {
+
+        }
+        curl_easy_cleanup(curl);
+    } return urls;
+}
+
+int parse() {
+    vector<string> urls = parseYandex("prefect");
+    cout << "results: " << urls.size() << endl;
+
+    for (int i = 0; i < urls.size(); i++) 
+    {
+        cout << urls[i] << endl;
+    }
+    return 0;
+} 

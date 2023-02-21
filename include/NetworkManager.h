@@ -8,6 +8,7 @@
 #include "AuditLog.h"
 
 #include "Modules/GcdModule.h"
+#include "Modules/TemplateModule.h"
 #include "Modules/ParsingModule.h"
 
 class NetworkManager

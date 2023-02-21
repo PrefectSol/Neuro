@@ -20,7 +20,7 @@ uint32_t runGcdModule(const Json::Value &config)
     const double learningRate = config["Creation modules"]["GCD"]["Learning rate"]["learning rate"].asDouble();
     const double bias = config["Creation modules"]["GCD"]["bias neuron"].asDouble();
 
-    Functions function = (Functions)(config["Creation modules"]["Activation function"].asInt());
+    Functions function = (Functions)(config["Creation modules"]["GCD"]["Activation function"].asInt());
 
     const std::string feedForwardModel = config["Creation modules"]["GCD"]["network structure"].asString();
     std::vector<int> networkStruct;

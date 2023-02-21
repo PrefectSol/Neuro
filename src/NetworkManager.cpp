@@ -15,7 +15,11 @@ uint32_t NetworkManager::runModule(const Json::Value &config, ErrorCode modulesR
         break;
 
     case 2:
-        runTestingModuleCode = ErrorCode::unavailableModule;
+        runTestingModuleCode = runTemplateModule(config);
+        break;
+
+    case 3:
+        runTestingModuleCode = runParsingModule(config);
         break;
 
     default:

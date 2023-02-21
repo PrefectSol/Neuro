@@ -6,6 +6,7 @@ CLI for creation and implementation of new modules in the main neural network st
 
 - GCD: finding the greatest common divisor. (Module for testing)
 - Template (in process): creating your own neural network based on a ready-made template.
+- GUI model/training viewer (features)
 - Parsing (features): getting information from the Internet by key text.
 - Vision (features): object recognition.
 - Text Handler (features): chatting.
@@ -39,10 +40,14 @@ To view the hints to the ```conf.json``` using the ```help``` command
  - [CMake](https://github.com/Kitware/CMake)
 
  - [JsonCpp](https://github.com/open-source-parsers/jsoncpp)
+ 
+ - [Curl](https://github.com/curl/curl)
 
     ### Installation on Linux (Arch)
     ```bash
-    sudo pacman -S cmake jsoncpp
+    sudo pacman -S cmake
+    sudo pacman -S jsoncpp
+    sudo pacman -S curl libcurl3 libcurl3-dev
     ```
 
     ### Installation on Windows

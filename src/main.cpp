@@ -1,5 +1,5 @@
 #define TEMPLATE_PROJECT
-#define DEBUG_FALSE
+#define DEBUG
 
 #define INDENT_3 "   "
 #define INDENT_6 "      "
@@ -22,7 +22,7 @@ void printUsage()
 void printHelp()
 {
     std::cout << "--------------------------------------" << std::endl;
-    std::cout << "VERSION: 0.2 \t NAME: Neuro" << std::endl;
+    std::cout << "VERSION: 0.2.2 \t NAME: Neuro" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
 
     std::cout << "Arguments:" << std::endl <<
@@ -32,8 +32,9 @@ void printHelp()
     std::cout << "--------------------------------------" << std::endl;
     std::cout << "Run Creation Modules:" << std::endl <<
         INDENT_3 << "1 - GCD module" << ": finding the greatest common divisor (Module for testing)" << std::endl << 
-        INDENT_3 << "2 - Parsing module" << ": getting information from the Internet by key text" << std::endl << 
-        INDENT_3 << "3 - Vision module (?)" << ": object recognition" << std::endl;
+        INDENT_3 << "2 - Template module" << ": Train your own neural network" << std::endl << 
+        INDENT_3 << "3 - Parsing module" << ": getting information from the Internet by key text" << std::endl << 
+        INDENT_3 << "4 - Vision module (?)" << ": object recognition" << std::endl;
     std::cout << std::endl << INDENT_3 << "Activation/Derivative function:" << std::endl <<
         INDENT_6 << "0 - linear" << std::endl << 
         INDENT_6 << "1 - semiLinear" << std::endl << 
@@ -57,7 +58,7 @@ void runInDebugMode()
     const std::string configPath = "Data/Configuration/conf.json";
     const clock_t startTimer = clock();
 
-    // createConfig(configPath);
+    createConfig(configPath);
 
     // printHelp();
     // printUsage();

@@ -249,6 +249,30 @@ src/ParsingModule.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/ParsingModule.cpp.s
 .PHONY : src/ParsingModule.cpp.s
 
+src/TemplateModule.o: src/TemplateModule.cpp.o
+.PHONY : src/TemplateModule.o
+
+# target to build an object file
+src/TemplateModule.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/TemplateModule.cpp.o
+.PHONY : src/TemplateModule.cpp.o
+
+src/TemplateModule.i: src/TemplateModule.cpp.i
+.PHONY : src/TemplateModule.i
+
+# target to preprocess a source file
+src/TemplateModule.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/TemplateModule.cpp.i
+.PHONY : src/TemplateModule.cpp.i
+
+src/TemplateModule.s: src/TemplateModule.cpp.s
+.PHONY : src/TemplateModule.s
+
+# target to generate assembly for a file
+src/TemplateModule.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Neuro.dir/build.make CMakeFiles/Neuro.dir/src/TemplateModule.cpp.s
+.PHONY : src/TemplateModule.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -297,6 +321,9 @@ help:
 	@echo "... src/ParsingModule.o"
 	@echo "... src/ParsingModule.i"
 	@echo "... src/ParsingModule.s"
+	@echo "... src/TemplateModule.o"
+	@echo "... src/TemplateModule.i"
+	@echo "... src/TemplateModule.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

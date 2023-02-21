@@ -75,6 +75,8 @@ bool isPathExists(std::string filename);
 
 bool isCorrectExtension(std::string filename, std::string extension);
 
+bool isFileExists(std::string filename);
+
 bool isFileExists(std::string filename, std::string extension);
 
 bool str2int(std::string str, int *num);

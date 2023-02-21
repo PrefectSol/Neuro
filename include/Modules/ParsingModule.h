@@ -1,16 +1,16 @@
 #ifndef PARSINGMODULE_H
 #define PARSINGMODULE_H
 
+#include <json/json.h>
 #include <iostream>
+#include <string>
+#include <vector>
+#include <curl/curl.h>
 
-class ParsingModule
-{
-public:
-    int parse(int argc, char **argv);
+#include "../Network.h"
 
-protected:
+using namespace std;
 
-private:
-};
+uint32_t runParsingModule(const Json::Value &config);
 
 #endif // !PARSINGMODULE_H
