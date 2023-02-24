@@ -179,7 +179,7 @@ void initArray(double *array, int size, double value)
 
 void createStream(std::string path)
 {
-    
+    // create...
 }
 
 void createConfig(std::string path)
@@ -204,8 +204,8 @@ void createConfig(std::string path)
     
     config["Creation modules"]["GCD"]["type of network structure"] = "FFS"; // Only Feed Forward Structure
     config["Creation modules"]["GCD"]["network structure"] = "23245321"; // input_0 | hidden_1 ... hidden_N-1 | output_N. Count of neurons on layer
-    config["Creation modules"]["GCD"]["target error accuracy"] = 0.0001f;
-    config["Creation modules"]["GCD"]["bias neuron"] = 1.0f;
+    config["Creation modules"]["GCD"]["target error accuracy"] = 0.0001f; // Stop training if (error <= value)
+    config["Creation modules"]["GCD"]["bias neuron"] = 1.0f; // Value of layer sum
 
     config["Creation modules"]["GCD"]["Learning rate"]["is adaptive"] = true;
     config["Creation modules"]["GCD"]["Learning rate"]["learning rate"] = 0.1f;

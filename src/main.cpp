@@ -120,7 +120,7 @@ int main(int argc, char **argv)
             else if (argv[2] == _subcommandStream && isFileExists(argv[3], ".dat"))
             {
                 // Run stream. 
-                return 0;
+                return 1;
             }
         }
 
@@ -134,9 +134,8 @@ int main(int argc, char **argv)
             }
             else if (argv[2] == _subcommandStream && isPathExists(argv[3]) && isCorrectExtension(argv[3], ".dat"))
             {
-                createStream(argv[3]);
-
-                return 0;
+                // Create stream...
+                return 1;
             }
         }
     }

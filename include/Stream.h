@@ -6,8 +6,9 @@
 class Stream
 {
 public:
+    // system of all NN`s and manage
     // main system
-
+    // Calc of nn`s values and start nn`s processing...
 protected:
 
 private:
