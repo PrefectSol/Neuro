@@ -85,4 +85,6 @@ void initArray(double *array, int size, double value);
 
 void createConfig(std::string path);
 
+void createStream(std::string path);
+
 #endif // !ALGORITHM

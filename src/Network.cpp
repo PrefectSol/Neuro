@@ -1,8 +1,8 @@
 #include "Network.h"
 
 Network::Network(const std::vector<int> &networkStruct, const Functions &func, double bias, double learningRate,
-                double epochs, bool isAdaptive, double decayRate)
-    : isAdaptive(isAdaptive), decayRate(decayRate), epochs(epochs)
+                double epochs, bool isAdaptive, double decayRate, double targetAccuracy)
+    : isAdaptive(isAdaptive), decayRate(decayRate), epochs(epochs), targetAccuracy(targetAccuracy)
 {
     this->learningRate = learningRate;
     this->bias = bias;

@@ -19,6 +19,7 @@ uint32_t runGcdModule(const Json::Value &config)
     const double decayRate = config["Creation modules"]["GCD"]["Learning rate"]["decay rate"].asDouble();
     const double learningRate = config["Creation modules"]["GCD"]["Learning rate"]["learning rate"].asDouble();
     const double bias = config["Creation modules"]["GCD"]["bias neuron"].asDouble();
+    const double targetAccuracy = config["Creation modules"]["GCD"]["target error accuracy"].asDouble();
 
     Functions function = (Functions)(config["Creation modules"]["GCD"]["Activation function"].asInt());
 
@@ -29,7 +30,7 @@ uint32_t runGcdModule(const Json::Value &config)
         networkStruct.push_back(i - '0');
     }
 
-    Network network(networkStruct, function , bias, learningRate, countIterations, isAdaptive, decayRate);
+    Network network(networkStruct, function , bias, learningRate, countIterations, isAdaptive, decayRate, targetAccuracy);
     uint32_t runTrainCode = network.runTrainNetwork(inputData, outputData);
     if (runTrainCode != ErrorCode::success)
     {

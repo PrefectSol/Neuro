@@ -28,6 +28,7 @@ enum ErrorCode
 
     operationsFailed,
     cannotFindFile,
+    failedToAchieveTargetAccuracy
 };
 
 #endif // !AUDITLOG_H

@@ -1,28 +1,41 @@
 {
 	"Creation modules" : 
 	{
-		"Activation function" : 2,
 		"GCD" : 
 		{
+			"Activation function" : 2,
 			"File for generating gcd data" : "Data/GcdModule/gcd.txt",
-			"Generating gcd data in memory" : false,
+			"Generating gcd data in memory" : true,
 			"Learning rate" : 
 			{
 				"decay rate" : 0.5,
-				"is adaptive" : false,
+				"is adaptive" : true,
 				"learning rate" : 0.10000000149011612
 			},
-			"bias neuron" : 0.0,
-			"max number of data" : 10000,
-			"network structure" : "23231",
+			"bias neuron" : 1.0,
+			"max number of data" : 100000000,
+			"network structure" : "23245321",
 			"number of epochs" : 500000,
-			"number of iterations" : 2
+			"number of iterations" : 2,
+			"target error accuracy" : 9.9999997473787516e-05,
+			"type of network structure" : "FFS"
 		},
 		"Parsing" : 
 		{
 			"key text" : "some text"
 		},
-		"Run the module" : 1
+		"Run the module" : 1,
+		"Template" : 
+		{
+			"Data" : 
+			{
+				"generate data" : true,
+				"input data" : "Data/TemplateModule/inputData.txt",
+				"number of epochs" : 1000000,
+				"number of iterations" : 1,
+				"output data" : "Data/TemplateModule/outputData.txt"
+			}
+		}
 	},
 	"Implementation modules" : 
 	{

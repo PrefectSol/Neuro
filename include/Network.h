@@ -1,6 +1,8 @@
 #ifndef NETWORK_H
 #define NETWORK_H
 
+#define VIEW_ERROR
+
 #include <iostream>
 #include <array>
 #include <vector>
@@ -17,7 +19,7 @@ class Network
 public:
     // Feed Forward Model
     Network(const std::vector<int> &networkStruct, const Functions &func, double bias, double learningRate,
-            double epochs, bool isAdaptive = false, double decayRate = 0.5f);
+            double epochs, bool isAdaptive = false, double decayRate = 0.5f, double targetAccuracy = -1.f);
     
     ~Network();
 
@@ -31,6 +33,7 @@ private:
     const bool isAdaptive;
     const double decayRate;
     const double epochs;
+    const double targetAccuracy;
 
     double learningRate;
     double bias;
@@ -86,9 +89,18 @@ uint32_t Network::runTrainNetwork(const std::vector<std::array<T1, size1>> &inpu
         {
             return propagateBackwardCode;
         }
+
+    #ifdef VIEW_ERROR
+        std::cout << mse << std::endl;
+    #endif // DEBUG
+    
+        if (mse <= targetAccuracy)
+        {
+            return ErrorCode::success;
+        }
     }
 
-    return ErrorCode::success;
+    return ErrorCode::failedToAchieveTargetAccuracy;
 }
 
 template<typename T, size_t size>
@@ -170,8 +182,6 @@ uint32_t Network::calculateMse(const std::array<T, size> &correctOutput)
         mse += std::pow(nums[i] - correctOutput[i], 2);
     }
     mse /= (size == 1) ? 2 : size;
-
-    std::cout << mse << std::endl;
 
     Vector<double> mseVector(mse, size);
     network.neuronErrors[network.neuronErrorsCount - 1]->setSizedData(mseVector.vector, size);

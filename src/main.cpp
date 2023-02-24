@@ -2,7 +2,7 @@
 #define DEBUG
 
 #define INDENT_3 "   "
-#define INDENT_6 "      "
+#define INDENT_6 (INDENT_3 INDENT_3)
 
 #include <json/json.h>
 
@@ -13,6 +13,9 @@ const std::string _commandHelp = "help";
 const std::string _commandRun = "run";
 const std::string _commandCreate = "create";
 
+const std::string _subcommandModule = "module";
+const std::string _subcommandStream = "stream";
+
 void printUsage()
 {
     std::cout << "Neuro - CLI for training and implementation of new modules in neural networks." << std::endl;
@@ -22,12 +25,16 @@ void printUsage()
 void printHelp()
 {
     std::cout << "--------------------------------------" << std::endl;
-    std::cout << "VERSION: 0.2.2 \t NAME: Neuro" << std::endl;
+    std::cout << "VERSION: 0.3.1 \t NAME: Neuro" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
 
-    std::cout << "Arguments:" << std::endl <<
-        INDENT_3 << _commandRun << " <path to config.json file>" << std::endl << 
-        INDENT_3 << _commandCreate << " <path to config.json file>" << std::endl;
+    std::cout << "Arguments:";
+    std::cout << std::endl << INDENT_3 << "- " << _commandRun << std::endl << 
+        INDENT_6 << _subcommandModule << " <path to config.json file>" << std::endl << 
+        INDENT_6 << _subcommandStream << " <path to stream.dat file>" << std::endl;
+    std::cout << std::endl << INDENT_3 << "- " << _commandCreate << std::endl <<
+        INDENT_6 << _subcommandModule << " <path to config.json file>" << std::endl << 
+        INDENT_6 << _subcommandStream << " <path to stream.dat file>" << std::endl;
 
     std::cout << "--------------------------------------" << std::endl;
     std::cout << "Run Creation Modules:" << std::endl <<
@@ -94,25 +101,43 @@ int main(int argc, char **argv)
         return 0;
     }
 
-    if (argc == 3)
+    if (argc == 4)
     {   
-        if (argv[1] == _commandRun && isFileExists(argv[2], ".json"))
+        if (argv[1] == _commandRun)
         {
-            std::ifstream jsonFile(argv[2], std::ifstream::binary);
-            Json::Value config;
-            jsonFile >> config;
-            jsonFile.close();
+            if (argv[2] == _subcommandModule && isFileExists(argv[3], ".json"))
+            {
+                std::ifstream jsonFile(argv[3], std::ifstream::binary);
+                Json::Value config;
+                jsonFile >> config;
+                jsonFile.close();
 
-            uint32_t runCode = NetworkManager::runModule(config);
+                uint32_t runCode = NetworkManager::runModule(config);
 
-            return runCode;
+                return runCode;
+            }
+
+            else if (argv[2] == _subcommandStream && isFileExists(argv[3], ".dat"))
+            {
+                // Run stream. 
+                return 0;
+            }
         }
 
-        if (argv[1] == _commandCreate && isPathExists(argv[2]) && isCorrectExtension(argv[2], ".json"))
+        if (argv[1] == _commandCreate)
         {
-            createConfig(argv[2]);
+            if (argv[2] == _subcommandModule && isPathExists(argv[3]) && isCorrectExtension(argv[3], ".json"))
+            {
+                createConfig(argv[3]);
 
-            return 0;
+                return 0;
+            }
+            else if (argv[2] == _subcommandStream && isPathExists(argv[3]) && isCorrectExtension(argv[3], ".dat"))
+            {
+                createStream(argv[3]);
+
+                return 0;
+            }
         }
     }
 
