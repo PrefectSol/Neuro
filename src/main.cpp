@@ -38,10 +38,10 @@ void printHelp()
 
     std::cout << "--------------------------------------" << std::endl;
     std::cout << "Run Creation Modules:" << std::endl <<
-        INDENT_3 << "1 - GCD module" << ": finding the greatest common divisor (Module for testing)" << std::endl << 
+        INDENT_3 << "1 - GCD module" << ": Finding the greatest common divisor (Module for testing)" << std::endl << 
         INDENT_3 << "2 - Template module" << ": Train your own neural network" << std::endl << 
-        INDENT_3 << "3 - Parsing module" << ": getting information from the Internet by key text" << std::endl << 
-        INDENT_3 << "4 - Vision module (?)" << ": object recognition" << std::endl;
+        INDENT_3 << "3 - Parsing module" << ": Getting information from the Internet by key text" << std::endl << 
+        INDENT_3 << "4 - Vision module (?)" << ": Object recognition" << std::endl;
     std::cout << std::endl << INDENT_3 << "Activation/Derivative function:" << std::endl <<
         INDENT_6 << "0 - linear" << std::endl << 
         INDENT_6 << "1 - semiLinear" << std::endl << 

@@ -187,7 +187,7 @@ void createConfig(std::string path)
     Json::Value config;
 
     //######################################
-    config["Creation modules"]["Run the module"] = 1; // Choose module
+    config["Creation modules"]["Run the module"] = 3; // Choose module
     //######################################
 
 
@@ -229,7 +229,7 @@ void createConfig(std::string path)
 
 
     //######################################
-    config["Creation modules"]["Parsing"]["key text"] = "some text";
+    config["Creation modules"]["Parsing"]["search text"] = "population of the world";
     //######################################
 
 

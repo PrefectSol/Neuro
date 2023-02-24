@@ -32,7 +32,7 @@ make
 
 To set custom settings, create a conf.json using the ```create``` command, change the settings in the created file, then ```run``` the utility using the run command.
 
-To view the hints to the ```conf.json``` using the ```help``` command
+To view the hints to the ```conf.json``` using the ```help``` command or check ```void createConfig(std::string path)``` from ```src/Algorithm.cpp```
 
 
 ## Dependencies
@@ -41,18 +41,20 @@ To view the hints to the ```conf.json``` using the ```help``` command
 
  - [JsonCpp](https://github.com/open-source-parsers/jsoncpp)
  
- - [Curl](https://github.com/curl/curl)
+ - [startpage-parser](https://github.com/knassar702/startpage-parser)
 
     ### Installation on Linux (Arch)
     ```bash
     sudo pacman -S cmake
     sudo pacman -S jsoncpp
     sudo pacman -S curl libcurl3 libcurl3-dev
+    pip install startpage-parser
     ```
 
     ### Installation on Windows
     ```bash
     winget install cmake
+    pip install startpage-parser
     ```
 
 ## Personal comment
