@@ -2,7 +2,7 @@ cmake_minimum_required( VERSION 3.3 )
 
 project( Neuro )
 
-include_directories( include include/Modules)
+include_directories( include include/Modules )
 
 file( GLOB EXEC_FILES src/*.cpp )
 

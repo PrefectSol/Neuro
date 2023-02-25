@@ -83,6 +83,10 @@ bool str2int(std::string str, int *num);
 
 void initArray(double *array, int size, double value);
 
+void deleteHtmlSyntax(std::string *html);
+
+size_t writeCallback(char *ptr, size_t size, size_t nmemb, void *userdata);
+
 void createConfig(std::string path);
 
 void createStream(std::string path);

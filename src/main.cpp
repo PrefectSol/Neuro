@@ -102,7 +102,7 @@ int main(int argc, char **argv)
     }
 
     if (argc == 4)
-    {   
+    {
         if (argv[1] == _commandRun)
         {
             if (argv[2] == _subcommandModule && isFileExists(argv[3], ".json"))

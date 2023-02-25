@@ -28,7 +28,8 @@ enum ErrorCode
 
     operationsFailed,
     cannotFindFile,
-    failedToAchieveTargetAccuracy
+    failedToAchieveTargetAccuracy,
+    cannotFindWikiArticle,
 };
 
 #endif // !AUDITLOG_H

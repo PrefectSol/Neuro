@@ -40,21 +40,23 @@ To view the hints to the ```conf.json``` using the ```help``` command or check `
  - [CMake](https://github.com/Kitware/CMake)
 
  - [JsonCpp](https://github.com/open-source-parsers/jsoncpp)
- 
- - [startpage-parser](https://github.com/knassar702/startpage-parser)
+
+ - [Curl](https://github.com/curl/curl)
+
+ - [RapidJSON](https://github.com/Tencent/rapidjson)
+
 
     ### Installation on Linux (Arch)
     ```bash
     sudo pacman -S cmake
     sudo pacman -S jsoncpp
     sudo pacman -S curl libcurl3 libcurl3-dev
-    pip install startpage-parser
+    sudo pacman -S rapidjson
     ```
 
     ### Installation on Windows
     ```bash
     winget install cmake
-    pip install startpage-parser
     ```
 
 ## Personal comment

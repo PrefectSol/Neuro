@@ -96,12 +96,12 @@ double DerivativeFunctions::single(double x)
 
 double hyperbolicCos(double x)
 {
-    (pow(M_E, x) + pow(M_E, -x)) / 2;
+    return (pow(M_E, x) + pow(M_E, -x)) / 2;
 }
 
 double hyperbolicSin(double x)
 {
-    (pow(M_E, x) - pow(M_E, -x)) / 2;
+    return (pow(M_E, x) - pow(M_E, -x)) / 2;
 }
 
 bool isPathExists(std::string filename)
@@ -177,6 +177,30 @@ void initArray(double *array, int size, double value)
     }
 }
 
+void deleteHtmlSyntax(std::string *html)
+{
+    std::string::size_type n;
+    while ((n = html->find("<")) != std::string::npos) 
+    {
+        std::string::size_type m = html->find(">", n);
+        if (m != std::string::npos) 
+        {
+            html->erase(n, m - n + 1);
+        } 
+        else 
+        {
+            break;
+        }
+    }
+}
+
+size_t writeCallback(char *ptr, size_t size, size_t nmemb, void *userdata) 
+{
+    ((std::string*)userdata)->append(ptr, size * nmemb);
+
+    return size * nmemb;
+}
+
 void createStream(std::string path)
 {
     // create...
@@ -229,7 +253,7 @@ void createConfig(std::string path)
 
 
     //######################################
-    config["Creation modules"]["Parsing"]["search text"] = "population of the world";
+    config["Creation modules"]["Parsing"]["search text"] = "parsing";
     //######################################
 
 
