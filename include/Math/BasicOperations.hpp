@@ -71,6 +71,57 @@ Vector<T> operator*(Matrix<T> &matrix, Vector<T> &vector)
 }
 
 template <typename T>
+Matrix<T> operator*(Vector<T> &rowVector, Vector<T> &colVector)
+{
+    Matrix<T> result(rowVector.getSize(), colVector.getSize());
+    for (int i = 0; i < rowVector.getSize(); i++) 
+    {
+        for (int j = 0; j < colVector.getSize(); j++) 
+        {
+            result.matrix[i][j] = rowVector.vector[i] * colVector.vector[j];
+        }
+    }
+
+    return result;
+}
+
+template <typename T>
+Matrix<T> operator*(T num, Matrix<T> &matrix)
+{
+    Matrix<T> result(matrix.getRows(), matrix.getCols());
+    for (int i = 0; i < matrix.getRows(); i++) 
+    {
+        for (int j = 0; j < matrix.getCols(); j++) 
+        {
+            result.matrix[i][j] *= num;
+        }
+    }
+
+    return result;
+}
+
+template <typename T>
+Matrix<T> operator-(Matrix<T> &matrix1, Matrix<T> &matrix2)
+{
+    if ((matrix1.getCols() != matrix2.getCols()) ||
+        (matrix1.getRows() != matrix2.getRows()))
+    {
+        throw std::invalid_argument("Incorrect sizes.");
+    }
+
+    Matrix<T> result(matrix1.getRows(), matrix1.getCols());
+    for (int i = 0; i < matrix1.getRows(); i++) 
+    {
+        for (int j = 0; j < matrix1.getCols(); j++) 
+        {
+            result.matrix[i][j] = matrix1.matrix[i][j] - matrix2.matrix[i][j];
+        }
+    }
+
+    return result;
+}
+
+template <typename T>
 Vector<T> operator+(Vector<T> &left, Vector<T> &right)
 {
     if (left.getSize() != right.getSize())

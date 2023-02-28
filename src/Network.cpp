@@ -108,18 +108,34 @@ uint32_t Network::updateWeights()
         const int layerRows = network.weightsLayers[i]->getRows();
         const int layerCols = network.weightsLayers[i]->getCols();
 
-        double correctiveValues[layerRows][layerCols];
-        for(int j = 0; j < layerRows; j++)
+        Vector<double> derivativeLayer(network.neuronLayers[i]->getSize());
+        uint32_t isDerivativeLayerCode = activateNeuronLayer(derivativeFunc, *network.neuronLayers[i], &derivativeLayer);
+        if (isDerivativeLayerCode != ErrorCode::success)
         {
-            for(int k = 0; k < layerCols; k++)
-            {
-                correctiveValues[j][k] = network.weightsLayers[i]->matrix[j][k] - learningRate * network.neuronErrors[i]->vector[j] * derivativeFunc(network.neuronLayers[i]->vector[j]);
-            }
+            return isDerivativeLayerCode;
         }
+        
+        Matrix<double> gradient = *network.neuronErrors[i] * derivativeLayer;
+        Matrix<double> learningGradient = learningRate * gradient;
 
-        Matrix<double> corrective(layerRows, layerCols, correctiveValues);
+        Matrix<double> correctiveWeights = *network.weightsLayers[i] - learningGradient;
 
-        uint32_t isSetDataCode = network.weightsLayers[i]->setData(corrective);
+        // double correctiveValues[layerRows][layerCols];
+        // for(int j = 0; j < layerRows; j++)
+        // {
+        //     for(int k = 0; k < layerCols; k++)
+        //     {
+        //         correctiveValues[j][k] = network.weightsLayers[i]->matrix[j][k] - learningRate * network.neuronErrors[i]->vector[j] * derivativeFunc(network.neuronLayers[i]->vector[j]);
+        //     }
+        // }
+
+        // Matrix<double> corrective(layerRows, layerCols, correctiveValues);
+
+        // std::cout << network.weightsLayers[i]->getCols() << "\t" << network.weightsLayers[i]->getRows() << std::endl;
+        // std::cout << correctiveWeights.getCols() << "\t" << correctiveWeights.getRows() << std::endl;
+
+
+        uint32_t isSetDataCode = network.weightsLayers[i]->setData(correctiveWeights);
         if (isSetDataCode != ErrorCode::success)
         {
             return isSetDataCode;

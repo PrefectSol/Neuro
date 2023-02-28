@@ -65,7 +65,7 @@ void runInDebugMode()
     const std::string configPath = "Data/Configuration/conf.json";
     const clock_t startTimer = clock();
 
-    createConfig(configPath);
+   createConfig(configPath);
 
     // printHelp();
     // printUsage();
